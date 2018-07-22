@@ -142,4 +142,5 @@ case "$1" in
     "")    find    ;;
     "--update" | "-U")    update    ;;
 	"--uninstall")    uninstall    ;;
-esac;
+esac
+exit 0

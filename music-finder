@@ -1,0 +1,76 @@
+#!/bin/bash
+
+
+#################################################################
+#                        music-finder V1.2                      #
+#  https://gitlab.com/hessam.ashari/Search_Music_and_Playe.git  #
+#################################################################
+
+
+clear
+
+GRE='\033[92m' # Green Light
+RD='\033[91m' # Red Light
+
+echo "-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/"
+echo "Please Select your path "
+
+read -p "Do you like to serach all in of system (Requires root access)? [Y/n] " all_system
+
+if [[ "$all_system" == "" || "$all_system" == "y" || "$all_system" == "Y" ]]; then
+	# ==========\Search all of file system\==========
+    echo "-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/"
+    echo "This operation may take a while!"
+
+    read -p "Please enter the name of music wich you search : " name
+    read -p "Please Select your type d {directory} f {file} : " typelike
+
+    if [[ $typelike == "d" ]]; then
+        sudo find  / -type d -name  $name
+    elif [[ $typelike == "f" ]]; then
+        echo "Install the mplayer if you want tp play music after find it"
+        sudo find / -type f -name "*$name*" -exec mplayer {} \;
+    else
+        echo -e "${RD}Your type is not true!"
+    fi
+elif [[ "$all_system" == "n" || "$all_system" == "N" ]]; then
+	read -p "Do you like search this directory? [Y/n] " likedirectory
+
+	if [[ "$likedirectory" == "" || "$likedirectory" == "y" || "$likedirectory" == "Y" ]]; then
+		# ==========\Search current directory\==========
+	    echo "-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/"
+
+	    read -p "Please enter the name of music wich you search : " name
+	    read -p "Please Select your type d {directory} f {file} : " typelike
+
+	    if [[ $typelike == "d" ]]; then
+	        find  $PWD -type d -name  $name
+	    elif [[ $typelike == "f" ]]; then
+	        echo "Install the mplayer if you want tp play music after find it"
+	        find  $PWD -type f -name "*$name*" -exec mplayer {} \;
+	    else
+	        echo -e "${RD}Your type is not true!"
+	    fi
+	elif [[ "$likedirectory" == "n" || "$likedirectory" == "N" ]]; then
+		# ==========\Search entered path\==========
+		read -p "Enter a directory : " -i "" -e addressdirectory 
+	    echo "-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/"
+
+	    read -p "Please enter the name of music wich you search : " name
+	    read -p "Please Select your type d {directory} f {file} : " liketype
+
+	    if [[ $liketype == "d" ]]; then
+	        find $addressdirectory -type d -iname $name
+	    elif [[ $liketype == "f" ]]; then
+	        echo "Install the mplayer if you want tp play music after find it"
+	        find $addressdirectory -type f -iname "*$name*" -exec mplayer {} \;
+	    else
+	        echo -e "${RD}Your type is not true!"
+	    fi
+	else
+		echo -e "${RD}Invalid argument!"
+	fi
+else
+    echo -e "${RD}Invalid argument!"
+fi
+echo -e "${GRE}done!"

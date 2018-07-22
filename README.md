@@ -1,12 +1,11 @@
 ### Hi. This script can :
-  - Search musics in your path
+  - Search musics
   - Search directories
   - Play musics witch you have find with MPlayer
 
 ### Installation
 
 ##### Automatically
-
 ```sh
 $ git clone https://gitlab.com/hessam.ashari/Search_Music_and_Playe.git
 $ cd Search_Music_and_Playe
@@ -39,11 +38,13 @@ $ sudo cp music-finder /usr/bin/music-finder
 ```sh
 $ music-finder
 ```
-
+### Update
+```sh
+$ music-finder --update
+```
 ### Uninstall
 ```sh
-$ chmod +x uninstall.sh
-$ ./uninstall.sh
+$ music-finder --uninstall
 ```
 *Exit the program with Ctrl+C :)*
 

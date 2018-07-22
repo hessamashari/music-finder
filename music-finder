@@ -28,7 +28,7 @@ function find(){
 	    read -p "Please Select your type d {directory} f {file} : " typelike
 
 	    if [[ $typelike == "d" ]]; then
-	        sudo find  / -type d -name  $name
+	        sudo find  / -type d -name $name
 	    elif [[ $typelike == "f" ]]; then
 	        echo "Install the mplayer if you want tp play music after find it"
 	        sudo find / -type f -name "*$name*" -exec mplayer {} \;
@@ -46,7 +46,7 @@ function find(){
 		    read -p "Please Select your type d {directory} f {file} : " typelike
 
 		    if [[ $typelike == "d" ]]; then
-		        find  $PWD -type d -name  $name
+		        find  $PWD -type d -name $name
 		    elif [[ $typelike == "f" ]]; then
 		        echo "Install the mplayer if you want tp play music after find it"
 		        find  $PWD -type f -name "*$name*" -exec mplayer {} \;
@@ -59,11 +59,11 @@ function find(){
 		    echo "-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/"
 
 		    read -p "Please enter the name of music wich you search : " name
-		    read -p "Please Select your type d {directory} f {file} : " liketype
+		    read -p "Please Select your type d {directory} f {file} : " typelike
 
-		    if [[ $liketype == "d" ]]; then
+		    if [[ $typelike == "d" ]]; then
 		        find $addressdirectory -type d -name $name
-		    elif [[ $liketype == "f" ]]; then
+		    elif [[ $typelike == "f" ]]; then
 		        echo "Install the mplayer if you want tp play music after find it"
 		        find $addressdirectory -type f -name "*$name*" -exec mplayer {} \;
 		    else

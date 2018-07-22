@@ -29,7 +29,11 @@ fi
 if [[ "$check_distro" == "0" ]]; then
     sudo cp music-finder /usr/bin/music-finder 
     sudo chmod 755 /usr/bin/music-finder
+<<<<<<< HEAD
     sudo cp ../Music_Finder $HOME/.config/
+=======
+    sudo cp -r ../Music_Finder $HOME/.config/
+>>>>>>> update_script
 # bug : if user doesnt enter password script print music-finder succesfully installed
     echo -e "\n ${GRE}music-finder succesfully installed "
 else

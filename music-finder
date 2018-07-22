@@ -12,7 +12,7 @@ clear
 GRE='\033[92m' # Green Light
 RD='\033[91m' # Red Light
 
-# ----------\Main function\----------
+# ----------\Find music function\----------
 function find(){
 	echo "-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/"
 	echo "Please Select your path "

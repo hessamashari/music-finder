@@ -127,16 +127,16 @@ function uninstall(){
 
 # ----------\Update fiunction\----------
 function update(){
-if [ -d "$HOME/.config/Music_Finder/" ];then
-    cd $HOME/.config/Music_Finder/
-    git pull
-    sleep 2
-    sudo cp music-finder /usr/bin/music-finder
-    sudo chmod 755 /usr/bin/music-finder
-else
-    echo -e " ${RD}Music_Finder doesn't update succesfully! "
-    exit 1
-fi
+	if [ -d "$HOME/.config/Music_Finder/" ];then
+	    cd $HOME/.config/Music_Finder/
+	    git pull
+	    sleep 2
+	    sudo cp music-finder /usr/bin/music-finder
+	    sudo chmod 755 /usr/bin/music-finder
+	else
+	    echo -e " ${RD}Music_Finder doesn't update succesfully! "
+	    exit 1
+	fi
 }
 
 # --------\Input options\--------

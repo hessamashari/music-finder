@@ -13,7 +13,7 @@ GRE='\033[92m' # Green Light
 RD='\033[91m' # Red Light
 
 # ----------\Find music function\----------
-function find(){
+function find() {
 	echo "-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/"
 	echo "Please Select your path "
 
@@ -79,7 +79,7 @@ function find(){
 }
 
 # ----------\Uninstall function\----------
-function uninstall(){
+function uninstall() {
 	clear
 
 	GRE='\033[92m' # Green Light
@@ -126,7 +126,7 @@ function uninstall(){
 }
 
 # ----------\Update fiunction\----------
-function update(){
+function update() {
 	cd /tmp
 	git clone https://gitlab.com/Music_Finder/music-finder.git
 	sleep 2

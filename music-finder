@@ -85,13 +85,13 @@ if [ -d "$HOME/.config/Music_Finder/" ];then
     sudo cp music-finder /usr/bin/music-finder
     sudo chmod 755 /usr/bin/music-finder
 else
-    echo -e " ${RD}Config Error ! "
+    echo -e " ${RD}Music_Finder doesn't update succesfully ! "
     exit 1
 fi
 }
 
 case "$1" in
-	"") 	main 	;;
-	"--update" | "-U")	   update  ;;
+    "")    main    ;;
+    "--update" | "-U")    update    ;;
 esac
 exit 0

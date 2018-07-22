@@ -13,7 +13,7 @@ GRE='\033[92m' # Green Light
 RD='\033[91m' # Red Light
 
 # ----------\Main function\----------
-function main(){
+function find(){
 	echo "-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/"
 	echo "Please Select your path "
 
@@ -139,7 +139,7 @@ function update(){
 
 # --------\Input options\--------
 case "$1" in
-    "")    main    ;;
+    "")    find    ;;
     "--update" | "-U")    update    ;;
 	"--uninstall")    uninstall    ;;
 esac;

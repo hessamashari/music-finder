@@ -38,7 +38,8 @@ if [[ "$delete" == "y" || "$delete" == "Y" ]]; then
 	fi
 elif [[ "$delete" == "" || "$delete" == "n" || "$delete" == "N" ]]; then
 	echo -e "\n ${GRE}music-finder is still installed :) "
-	exit 1
+	exit 0
 else
 	echo -e "${RD}Invalid argument!"
+	exit 1
 fi

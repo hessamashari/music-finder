@@ -55,7 +55,7 @@ function find(){
 		    fi
 		elif [[ "$likedirectory" == "n" || "$likedirectory" == "N" ]]; then
 			# ----------\Search entered path\----------
-			read -p "Enter a directory : " -i "" -e addressdirectory 
+			read -p "Enter a directory : " -i "$PWD" -e addressdirectory 
 		    echo "-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/"
 
 		    read -p "Please enter the name of music wich you search : " name

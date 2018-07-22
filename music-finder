@@ -133,6 +133,7 @@ function update(){
 	cd music-finder
 	sudo cp music-finder /usr/bin/music-finder
 	sudo chmod 755 /usr/bin/music-finder
+	sudo rm -rf /tmp/music-finder
 	echo -e " ${GRE}Music_Finder updated succesfully! "
 }
 
@@ -141,5 +142,4 @@ case "$1" in
     "")    main    ;;
     "--update" | "-U")    update    ;;
 	"--uninstall")    uninstall    ;;
-esac
-exit 0
+esac;

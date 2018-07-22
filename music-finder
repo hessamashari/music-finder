@@ -2,12 +2,25 @@
 
 
 #################################################################
-#                        music-finder V1.2                      #
+#                        Music_Finder V1.2                      #
 #  https://gitlab.com/hessam.ashari/Search_Music_and_Playe.git  #
 #################################################################
 
 
 clear
+
+function update(){
+if [ -d "$HOME/.config/Music_Finder/" ];then
+    cd $HOME/.config/Music_Finder/
+    git pull
+    sleep 2
+    chmod +x update.sh
+    ./update.sh
+else
+    echo -e "\e[1m\e[97m==> Config Error ! "
+    exit 1
+fi
+}
 
 GRE='\033[92m' # Green Light
 RD='\033[91m' # Red Light

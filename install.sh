@@ -5,7 +5,7 @@ clear
 GRE='\033[92m' # Green Light
 RD='\033[91m' # Red Light
 
-# ==========\Main\==========
+# ----------\Main\---------
 check_distro=0
 #Checking if the distro is debianbase / archbase / redhatbase/ openSUSEbase and running the correct command
 codename="lsb_release -c | awk {'print $2'}"
@@ -25,7 +25,7 @@ else
 	check_distro="1"
 fi
 
-# ==========\Adding Music-finder Command\==========
+# ----------\Adding Music-finder Command\----------
 if [[ "$check_distro" == "0" ]]; then
     sudo cp music-finder /usr/bin/music-finder 
     sudo chmod 755 /usr/bin/music-finder

@@ -7,7 +7,7 @@ RD='\033[91m' # Red Light
 
 read -p "Are you sure to uninstall music-finder??!! [y/N] " delete
 
-# ==========\Uninstall music-finder\==========
+# ----------\Uninstall music-finder\----------
 if [[ "$delete" == "y" || "$delete" == "Y" ]]; then
 	del_dependes=0
 	#Checking if the distro is debianbase / archbase / redhatbase/ openSUSEbase and running the correct command
@@ -29,7 +29,7 @@ if [[ "$delete" == "y" || "$delete" == "Y" ]]; then
 	fi
 
 	sudo rm -f /usr/bin/music-finder
-	# ==========\Removing Music-finder Command\==========
+	# ----------\Removing Music-finder Command\----------
 	if [[ "$del_dependes" == "0" ]]; then
 	# bug : if user doesnt enter password script print music-finder succesfully uninstalled
 	    echo -e "\n ${RD}music-finder succesfully uninstalled :( "

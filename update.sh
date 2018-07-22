@@ -10,7 +10,7 @@ if [ -d "$HOME/.config/Music_Finder/" ];then
     cd $HOME/.config/Music_Finder/
     git pull
     sleep 2
-    sudo mv music-finder /usr/bin/music-finder
+    sudo cp music-finder /usr/bin/music-finder
     sudo chmod 755 /usr/bin/music-finder
 else
     echo -e " ${RD}Config Error ! "

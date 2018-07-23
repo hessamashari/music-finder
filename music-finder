@@ -11,9 +11,12 @@ clear
 
 GRE='\033[92m' # Green Light
 RD='\033[91m' # Red Light
+LW='\033[97m' # White Light
+BLW='\033[1m' # Bold White Light
+NC='\033[0m' # White
 
 # ----------\Find music function\----------
-function find() {
+function findf() {
 	echo "-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/"
 	echo "Please Select your path "
 
@@ -30,10 +33,10 @@ function find() {
 	    if [[ $typelike == "d" ]]; then
 	        sudo find  / -type d -name $name
 	    elif [[ $typelike == "f" ]]; then
-	        echo "Install the mplayer if you want tp play music after find it"
+	        echo "Install the mplayer if you want to play music after find it"
 	        sudo find / -type f -name "*$name*" -exec mplayer {} \;
 	    else
-	        echo -e "${RD}Your type is not true!"
+	        echo -e "${RD}Your type is not true!${NC}"
 	    fi
 	elif [[ "$all_system" == "n" || "$all_system" == "N" ]]; then
 		read -p "Do you like search this directory? [Y/n] " likedirectory
@@ -48,10 +51,10 @@ function find() {
 		    if [[ $typelike == "d" ]]; then
 		        find  $PWD -type d -name $name
 		    elif [[ $typelike == "f" ]]; then
-		        echo "Install the mplayer if you want tp play music after find it"
+		        echo "Install the mplayer if you want to play music after find it"
 		        find  $PWD -type f -name "*$name*" -exec mplayer {} \;
 		    else
-		        echo -e "${RD}Your type is not true!"
+		        echo -e "${RD}Your type is not true!${NC}"
 		    fi
 		elif [[ "$likedirectory" == "n" || "$likedirectory" == "N" ]]; then
 			# ----------\Search entered path\----------
@@ -64,18 +67,18 @@ function find() {
 		    if [[ $typelike == "d" ]]; then
 		        find $addressdirectory -type d -name $name
 		    elif [[ $typelike == "f" ]]; then
-		        echo "Install the mplayer if you want tp play music after find it"
+		        echo "Install the mplayer if you want to play music after find it"
 		        find $addressdirectory -type f -name "*$name*" -exec mplayer {} \;
 		    else
-		        echo -e "${RD}Your type is not true!"
+		        echo -e "${RD}Your type is not true!${NC}"
 		    fi
 		else
-			echo -e "${RD}Invalid argument!"
+			echo -e "${RD}Invalid argument!${NC}"
 		fi
 	else
-	    echo -e "${RD}Invalid argument!"
+	    echo -e "${RD}Invalid argument!${NC}"
 	fi
-	echo -e "${GRE}done!"
+	echo -e "${GRE}done!${NC}"
 }
 
 # ----------\Uninstall function\----------
@@ -112,34 +115,45 @@ function uninstall() {
 		# ----------\Removing Music-finder Command\----------
 		if [[ "$del_dependes" == "0" ]]; then
 		# bug : if user doesnt enter password script print music-finder succesfully uninstalled
-		    echo -e "\n ${RD}music-finder succesfully uninstalled :( "
+		    echo -e "\n ${RD}music-finder succesfully uninstalled :( ${NC}"
 		else
 			exit 1
 		fi
 	elif [[ "$delete" == "" || "$delete" == "n" || "$delete" == "N" ]]; then
-		echo -e "\n ${GRE}music-finder is still installed :) "
+		echo -e "\n ${GRE}music-finder is still installed :) ${NC}"
 		exit 0
 	else
-		echo -e "${RD}Invalid argument!"
+		echo -e "${RD}Invalid argument! ${NC}"
 		exit 1
 	fi
 }
 
 # ----------\Update fiunction\----------
 function update() {
-	cd /tmp
-	git clone https://gitlab.com/Music_Finder/music-finder.git
-	sleep 2
-	cd music-finder
-	sudo cp music-finder /usr/bin/music-finder
-	sudo chmod 755 /usr/bin/music-finder
-	sudo rm -rf /tmp/music-finder
-	echo -e " ${GRE}Music_Finder updated succesfully! "
+	if [[ -d /tmp/music_finder ]]; then
+		cd /tmp
+		git clone https://gitlab.com/Music_Finder/music-finder.git
+		sleep 2
+		cd music-finder
+		sudo cp music-finder /usr/bin/music-finder
+		sudo chmod 755 /usr/bin/music-finder
+		sudo rm -rf /tmp/music-finder
+		echo -e " ${GRE}Music_Finder updated succesfully! ${NC}"
+	else
+		sudo rm -rf /tmp/music_finder
+		cd /tmp
+		git clone https://gitlab.com/Music_Finder/music-finder.git
+		sleep 2
+		cd music-finder
+		sudo cp music-finder /usr/bin/music-finder
+		sudo chmod 755 /usr/bin/music-finder
+		sudo rm -rf /tmp/music-finder
+	fi
 }
 
 # --------\Input options\--------
 case "$1" in
-    "")    find    ;;
+    "")    findf    ;;
     "--update" | "-U")    update    ;;
 	"--uninstall")    uninstall    ;;
 esac;

@@ -4,6 +4,9 @@ clear
 
 GRE='\033[92m' # Green Light
 RD='\033[91m' # Red Light
+LW='\033[97m' # White Light
+BLW='\033[1m' # Bold White Light
+NC='\033[0m' # White
 
 # ----------\Main\---------
 check_distro=0
@@ -11,7 +14,7 @@ check_distro=0
 codename="lsb_release -c | awk {'print $2'}"
 architecture="dpkg --print-architecture"
 
-echo -e "${GRE}Enter your password fro install dependensies\n"
+echo -e "${GRE}Enter your password fro install dependensies\n${NC}"
 if pacman -Q &> /dev/null; then # Check Arch
 	sudo pacman -S mplayer
 elif [[ "$codename" == "bionic" ]] && [[ "$architecture" == "armhf" ]]; then # Check Ubuntu Server and raspberry
@@ -23,7 +26,7 @@ elif dnf list &> /dev/null; then # Check Fedora
 elif zypper search i+ &> /dev/null; then # Check openSUSE
 	sudo zypper install mplayer
 else
-	echo -e "${RD}Your distro is neither archbase nor debianbase nor redhatbase nor susebase So, The script is not going to work in your distro and you have install it manually. for more information read README.md"
+	echo -e "${RD}Your distro is neither archbase nor debianbase nor redhatbase nor susebase So, The script is not going to work in your distro and you have install it manually. for more information read README.md${NC}"
 	check_distro="1"
 fi
 
@@ -32,7 +35,7 @@ if [ "$check_distro" == "0" ]; then
     sudo cp music-finder /usr/bin/music-finder 
     sudo chmod 755 /usr/bin/music-finder
 # bug : if user doesnt enter password script print music-finder succesfully installed
-    echo -e "\n ${GRE}music-finder succesfully installed "
+    echo -e "\n ${GRE}music-finder succesfully installed ${NC}"
 else
 	exit 1
 fi

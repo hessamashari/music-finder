@@ -130,14 +130,24 @@ function uninstall() {
 
 # ----------\Update fiunction\----------
 function update() {
-	cd /tmp
-	git clone https://gitlab.com/Music_Finder/music-finder.git
-	sleep 2
-	cd music-finder
-	sudo cp music-finder /usr/bin/music-finder
-	sudo chmod 755 /usr/bin/music-finder
-	sudo rm -rf /tmp/music-finder
-	echo -e " ${GRE}Music_Finder updated succesfully! ${NC}"
+	if [[ -d /tmp/music_finder ]]; then
+		cd /tmp
+		git clone https://gitlab.com/Music_Finder/music-finder.git
+		sleep 2
+		cd music-finder
+		sudo cp music-finder /usr/bin/music-finder
+		sudo chmod 755 /usr/bin/music-finder
+		sudo rm -rf /tmp/music-finder
+		echo -e " ${GRE}Music_Finder updated succesfully! ${NC}"
+	else
+		sudo rm -rf /tmp/music_finder
+		cd /tmp
+		git clone https://gitlab.com/Music_Finder/music-finder.git
+		sleep 2
+		cd music-finder
+		sudo cp music-finder /usr/bin/music-finder
+		sudo chmod 755 /usr/bin/music-finder
+		sudo rm -rf /tmp/music-finder
 }
 
 # --------\Input options\--------

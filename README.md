@@ -1,51 +1,69 @@
-### Hi. This script can :
-  - Search musics
-  - Search directories
-  - Play musics witch you have find with MPlayer
+# Hi. This script can
 
-### Installation
+- Search musics
+- Search directories
+- Play musics witch you have find with MPlayer
 
-##### Automatically
+## Installation
+
+### Automatically
+
 ```sh
 $ git clone https://gitlab.com/Music_Finder/music-finder.git
 $ cd Search_Music_and_Playe
 $ chmod +x install.sh
 $ ./install.sh
 ```
-##### Manually
-**Install dependensies**
 
-*In __Debian__ base distributions (like Ubuntu) try :* 
+### Manually
+
+*Install dependensies*
+
+**In __Debian__ base distributions (like Ubuntu) try :**
+
 ```sh
 $ sudo apt install mplayer
 ```
-*In __RedHat__ base distributions (like Fedora) try :*
+
+**In __RedHat__ base distributions (like Fedora) try :**
+
 ```sh
 $ sudo dnf install mplayer
 ```
-*In __Arch__ base distributions (like Manjaro) try :*
+
+**In __Arch__ base distributions (like Manjaro) try :**
+
 ```sh
 $ sudo pacman -S mplayer
 ```
-**Install script**
+
+*Install script*
+
 ```sh
 $ git clone https://gitlab.com/Music_Finder/music-finder.git
 $ cd Search_Music_and_Playe
 $ chmod +x music-finder
 $ sudo cp music-finder /usr/bin/music-finder
 ```
-### Usage 
+
+## Usage
+
 ```sh
 $ music-finder
 ```
+
 ### Update
+
 ```sh
 $ music-finder --update
 ```
-### Uninstall
+
+## Uninstall
+
 ```sh
 $ music-finder --uninstall
 ```
-*Exit the program with Ctrl+C :)*
+
+Exit the program with Ctrl+C :)
 
 Tnx!

@@ -7,8 +7,6 @@
 ######################################################
 
 
-clear
-
 GRE='\033[92m' # Green Light
 RD='\033[91m' # Red Light
 LW='\033[97m' # White Light
@@ -17,6 +15,8 @@ NC='\033[0m' # White
 
 # ----------\Find music function\----------
 function findf() {
+	clear
+
 	echo "-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/"
 	echo "Please Select your path "
 
@@ -83,6 +83,8 @@ function findf() {
 
 # ----------\Uninstall function\----------
 function uninstall() {
+	clear
+
 	read -p "Are you sure to uninstall music-finder??!! [y/N] " delete
 
 	# ----------\Uninstall music-finder\---------
@@ -145,6 +147,8 @@ function uninstall() {
 
 # ----------\Update fiunction\----------
 function update() {
+	clear
+
 	if [[ -d /tmp/music_finder ]]; then
 		cd /tmp
 		git clone https://gitlab.com/Music_Finder/music-finder.git
@@ -166,10 +170,17 @@ function update() {
 	fi
 }
 
-# --------\Input options\--------
+# ----------\Help function\----------
+function usage() {
+	echo -e "\n Usage: music-finder [ -h | --help ],  [ --uninstall ],   [ -U | --update ]"
+	exit 1
+}
+
+# ----------\Input options\----------
 case "$1" in
     "")    findf    ;;
     "--update" | "-U")    update    ;;
 	"--uninstall")    uninstall    ;;
+	"--help" | "-h")    usage    ;;
 esac;
 exit 0

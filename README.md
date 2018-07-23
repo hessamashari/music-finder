@@ -52,7 +52,7 @@ $ sudo cp music-finder /usr/bin/music-finder
 $ music-finder
 ```
 
-### Update
+## Update
 
 ```sh
 $ music-finder --update
@@ -62,6 +62,12 @@ $ music-finder --update
 
 ```sh
 $ music-finder --uninstall
+```
+
+## Help
+
+```sh
+$ music-player --help
 ```
 
 Exit the program with Ctrl+C :)

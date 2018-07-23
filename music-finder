@@ -30,7 +30,7 @@ function find() {
 	    if [[ $typelike == "d" ]]; then
 	        sudo find  / -type d -name $name
 	    elif [[ $typelike == "f" ]]; then
-	        echo "Install the mplayer if you want tp play music after find it"
+	        echo "Install the mplayer if you want to play music after find it"
 	        sudo find / -type f -name "*$name*" -exec mplayer {} \;
 	    else
 	        echo -e "${RD}Your type is not true!"
@@ -48,7 +48,7 @@ function find() {
 		    if [[ $typelike == "d" ]]; then
 		        find  $PWD -type d -name $name
 		    elif [[ $typelike == "f" ]]; then
-		        echo "Install the mplayer if you want tp play music after find it"
+		        echo "Install the mplayer if you want to play music after find it"
 		        find  $PWD -type f -name "*$name*" -exec mplayer {} \;
 		    else
 		        echo -e "${RD}Your type is not true!"
@@ -64,7 +64,7 @@ function find() {
 		    if [[ $typelike == "d" ]]; then
 		        find $addressdirectory -type d -name $name
 		    elif [[ $typelike == "f" ]]; then
-		        echo "Install the mplayer if you want tp play music after find it"
+		        echo "Install the mplayer if you want to play music after find it"
 		        find $addressdirectory -type f -name "*$name*" -exec mplayer {} \;
 		    else
 		        echo -e "${RD}Your type is not true!"

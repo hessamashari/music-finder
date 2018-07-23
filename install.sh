@@ -10,6 +10,8 @@ check_distro=0
 #Checking if the distro is debianbase / archbase / redhatbase/ openSUSEbase and running the correct command
 codename="lsb_release -c | awk {'print $2'}"
 architecture="dpkg --print-architecture"
+
+echo -e "${GRE}Enter your password fro install dependensies\n"
 if pacman -Q &> /dev/null; then # Check Arch
 	sudo pacman -S mplayer
 elif [[ "$codename" == "bionic" ]] && [[ "$architecture" == "armhf" ]]; then # Check Ubuntu Server and raspberry
@@ -26,7 +28,7 @@ else
 fi
 
 # ----------\Adding Music-finder Command\----------
-if [[ "$check_distro" == "0" ]]; then
+if [ "$check_distro" == "0" ]; then
     sudo cp music-finder /usr/bin/music-finder 
     sudo chmod 755 /usr/bin/music-finder
 # bug : if user doesnt enter password script print music-finder succesfully installed

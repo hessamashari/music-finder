@@ -54,7 +54,6 @@ fi
 if [ "$check_distro" == "0" ]; then
     sudo cp music-finder /usr/bin/music-finder 
     sudo chmod 755 /usr/bin/music-finder
-# bug : if user doesnt enter password script print music-finder succesfully installed
     echo -e "\n ${GRE}music-finder succesfully installed ${NC}"
 else
 	exit 1

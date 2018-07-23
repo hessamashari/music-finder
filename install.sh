@@ -56,5 +56,6 @@ if [ "$check_distro" == "0" ]; then
     sudo chmod 755 /usr/bin/music-finder
     echo -e "\n ${GRE}music-finder succesfully installed ${NC}"
 else
+	echo -e "\n ${RD}music-finder doesn't install succesfully ${NC}"
 	exit 1
 fi

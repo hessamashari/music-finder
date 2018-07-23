@@ -14,7 +14,7 @@ check_distro=0
 codename="lsb_release -c | awk {'print $2'}"
 architecture="dpkg --print-architecture"
 
-echo -e "${GRE} Enter your password fro install dependensies\n${NC}"
+echo -e "${GRE} Enter your password for install dependensies\n${NC}"
 if pacman -Q &> /dev/null; then # Check Arch
 	sudo pacman -S mplayer
 elif [[ "$codename" == "bionic" ]] && [[ "$architecture" == "armhf" ]]; then # Check Ubuntu Server and raspberry

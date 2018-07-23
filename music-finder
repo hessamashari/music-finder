@@ -148,6 +148,7 @@ function update() {
 		sudo cp music-finder /usr/bin/music-finder
 		sudo chmod 755 /usr/bin/music-finder
 		sudo rm -rf /tmp/music-finder
+	fi
 }
 
 # --------\Input options\--------

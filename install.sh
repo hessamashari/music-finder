@@ -12,14 +12,34 @@ codename="lsb_release -c | awk {'print $2'}"
 architecture="dpkg --print-architecture"
 if pacman -Q &> /dev/null; then # Check Arch
 	sudo pacman -S mplayer
-elif [[ "$codename" == "bionic" ]] && [[ "$architecture" == "armhf" ]]; then # Check Ubuntu Server and raspberry
+	# Check user's entered password
+	if [[ "$?" == "1" ]]; then
+		check_distro="1"
+	fi
+elif [[ "$codename" == "bionic" ]] && [[ "$architecture" == "armhf" ]]; then # Check Ubuntu Server
 	sudo apt install mplayer
+	# Check user's entered password
+	if [[ "$?" == "1" ]]; then
+		check_distro="1"
+	fi
 elif apt list --installed &> /dev/null; then # Check Debian
 	sudo apt install mplayer
+	# Check user's entered password
+	if [[ "$?" == "1" ]]; then
+		check_distro="1"
+	fi
 elif dnf list &> /dev/null; then # Check Fedora
 	sudo dnf install mplayer
+	# Check user's entered password
+	if [[ "$?" == "1" ]]; then
+		check_distro="1"
+	fi
 elif zypper search i+ &> /dev/null; then # Check openSUSE
 	sudo zypper install mplayer
+	# Check user's entered password
+	if [[ "$?" == "1" ]]; then
+		check_distro="1"
+	fi
 else
 	echo -e "${RD}Your distro is neither archbase nor debianbase nor redhatbase nor susebase So, The script is not going to work in your distro and you have install it manually. for more information read README.md"
 	check_distro="1"

@@ -2,11 +2,13 @@
 
 clear
 
-GRE='\033[92m' # Green Light
-RD='\033[91m' # Red Light
-LW='\033[97m' # White Light
-BLW='\033[1m' # Bold White Light
-NC='\033[0m' # White
+noColor='\033[0m'       # Text mode
+# Colors
+red='\033[0;31m'          # red
+green='\033[0;32m'        # green
+yellow='\033[0;33m'       # yellow
+blue='\033[0;34m'         # blue
+white='\033[0;37m'        # white
 
 # ----------\Main\---------
 check_distro=0
@@ -14,7 +16,7 @@ check_distro=0
 codename="lsb_release -c | awk {'print $2'}"
 architecture="dpkg --print-architecture"
 
-echo -e "${GRE} Enter your password for install dependensies\n${NC}"
+echo -e "${green} Enter your password for install dependensies\n${noColor}"
 if pacman -Q &> /dev/null; then # Check Arch
 	sudo pacman -S mplayer
 	# Check user's entered password
@@ -46,7 +48,7 @@ elif zypper search i+ &> /dev/null; then # Check openSUSE
 		check_distro="1"
 	fi
 else
-	echo -e "${RD}Your distro is neither archbase nor debianbase nor redhatbase nor susebase So, The script is not going to work in your distro and you have install it manually. for more information read README.md${NC}"
+	echo -e "${red}Your distro is neither archbase nor debianbase nor redhatbase nor susebase So, The script is not going to work in your distro and you have install it manually. for more information read README.md${noColor}"
 	check_distro="1"
 fi
 
@@ -54,8 +56,8 @@ fi
 if [ "$check_distro" == "0" ]; then
     sudo cp music-finder /usr/bin/music-finder 
     sudo chmod 755 /usr/bin/music-finder
-    echo -e "\n ${GRE}music-finder succesfully installed ${NC}"
+    echo -e "\n ${green}music-finder succesfully installed ${noColor}"
 else
-	echo -e "\n ${RD}music-finder doesn't install succesfully ${NC}"
+	echo -e "\n ${red}music-finder doesn't install succesfully ${noColor}"
 	exit 1
 fi

@@ -7,11 +7,13 @@
 ######################################################
 
 
-GRE='\033[92m' # Green Light
-RD='\033[91m' # Red Light
-LW='\033[97m' # White Light
-BLW='\033[1m' # Bold White Light
-NC='\033[0m' # White
+noColor='\033[0m'       # Text mode
+# Colors
+red='\033[0;31m'          # red
+green='\033[0;32m'        # green
+yellow='\033[0;33m'       # yellow
+blue='\033[0;34m'         # blue
+white='\033[0;37m'        # white
 
 # ----------\Find music function\----------
 function findf() {
@@ -36,7 +38,7 @@ function findf() {
 	        echo "Install the mplayer if you want to play music after find it"
 	        sudo find / -type f -name "*$name*" -exec mplayer {} \;
 	    else
-	        echo -e "${RD}Your type is not true!${NC}"
+	        echo -e "${red}Your type is not true!${noColor}"
 	    fi
 	elif [[ "$all_system" == "n" || "$all_system" == "N" ]]; then
 		read -p "Do you like search this directory? [Y/n] " likedirectory
@@ -54,7 +56,7 @@ function findf() {
 		        echo "Install the mplayer if you want to play music after find it"
 		        find  $PWD -type f -name "*$name*" -exec mplayer {} \;
 		    else
-		        echo -e "${RD}Your type is not true!${NC}"
+		        echo -e "${red}Your type is not true!${noColor}"
 		    fi
 		elif [[ "$likedirectory" == "n" || "$likedirectory" == "N" ]]; then
 			# ----------\Search entered path\----------
@@ -70,15 +72,15 @@ function findf() {
 		        echo "Install the mplayer if you want to play music after find it"
 		        find $addressdirectory -type f -name "*$name*" -exec mplayer {} \;
 		    else
-		        echo -e "${RD}Your type is not true!${NC}"
+		        echo -e "${red}Your type is not true!${noColor}"
 		    fi
 		else
-			echo -e "${RD}Invalid argument!${NC}"
+			echo -e "${red}Invalid argument!${noColor}"
 		fi
 	else
-	    echo -e "${RD}Invalid argument!${NC}"
+	    echo -e "${red}Invalid argument!${noColor}"
 	fi
-	echo -e "${GRE}done!${NC}"
+	echo -e "${green}done!${noColor}"
 }
 
 # ----------\Uninstall function\----------
@@ -124,23 +126,23 @@ function uninstall() {
 				del_dependes="1"
 			fi
 		else
-			echo -e "${RD}Your distro is neither archbase nor debianbase nor redhatbase nor susebase So, The script is not going to work in your distro and you have uninstall the dependensies manually. for more information read README.md"
+			echo -e "${red}Your distro is neither archbase nor debianbase nor redhatbase nor susebase So, The script is not going to work in your distro and you have uninstall the dependensies manually. for more information read README.md"
 			del_dependes="1"
 		fi
 
 		sudo rm -f /usr/bin/music-finder
 		# ----------\Removing Music-finder Command\----------
 		if [[ "$del_dependes" == "0" ]]; then
-		    echo -e "\n ${RD}music-finder succesfully uninstalled :( ${NC}"
+		    echo -e "\n ${red}music-finder succesfully uninstalled :( ${noColor}"
 		else
-			echo -e "\n ${GRE}music-finder doesn't uninstall succesfully :) ${NC}"
+			echo -e "\n ${green}music-finder doesn't uninstall succesfully :) ${noColor}"
 			exit 1
 		fi
 	elif [[ "$delete" == "" || "$delete" == "n" || "$delete" == "N" ]]; then
-		echo -e "\n ${GRE}music-finder is still installed :) ${NC}"
+		echo -e "\n ${green}music-finder is still installed :) ${noColor}"
 		exit 0
 	else
-		echo -e "${RD}Invalid argument! ${NC}"
+		echo -e "${red}Invalid argument! ${noColor}"
 		exit 1
 	fi
 }
@@ -157,7 +159,7 @@ function update() {
 		sudo cp music-finder /usr/bin/music-finder
 		sudo chmod 755 /usr/bin/music-finder
 		sudo rm -rf /tmp/music-finder
-		echo -e " ${GRE}Music_Finder updated succesfully! ${NC}"
+		echo -e " ${green}Music_Finder updated succesfully! ${noColor}"
 	else
 		sudo rm -rf /tmp/music_finder
 		cd /tmp

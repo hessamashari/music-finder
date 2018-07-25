@@ -6,7 +6,7 @@ noColor='\033[0m'       # Text mode
 # Colors
 red='\033[0;31m'          # red
 green='\033[0;32m'        # green
-yellow='\033[0;33m'       # yellow
+orange='\033[0;33m'       # orange
 blue='\033[0;34m'         # blue
 white='\033[0;37m'        # white
 

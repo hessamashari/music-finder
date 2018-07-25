@@ -22,7 +22,7 @@ function findf() {
 	echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${noColor}"
 	echo -e "${yellow}Please Select your path ${noColor}"
 
-	read -p "Do you like to serach all in of system (Requires root access)? [Y/n] " all_system
+	read -p "Do you like to serach all of your system (Requires root access)? [Y/n] " all_system
 
 	if [[ "$all_system" == "" || "$all_system" == "y" || "$all_system" == "Y" ]]; then
 		# ----------\Search all of file system\----------

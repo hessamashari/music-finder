@@ -19,14 +19,14 @@ white='\033[0;37m'        # white
 function findf() {
 	clear
 
-	echo "-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/"
+	echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${noColor}"
 	echo "Please Select your path "
 
 	read -p "Do you like to serach all in of system (Requires root access)? [Y/n] " all_system
 
 	if [[ "$all_system" == "" || "$all_system" == "y" || "$all_system" == "Y" ]]; then
 		# ----------\Search all of file system\----------
-	    echo "-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/"
+	    echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${noColor}"
 	    echo "This operation may take a while!"
 
 	    read -p "Please enter the name of music wich you search : " name
@@ -54,7 +54,7 @@ function findf() {
 
 		if [[ "$likedirectory" == "" || "$likedirectory" == "y" || "$likedirectory" == "Y" ]]; then
 			# ----------\Search current directory\----------
-		    echo "-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/"
+		    echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${noColor}"
 
 		    read -p "Please enter the name of music wich you search : " name
 		    read -p "Please Select your type d {directory} f {file} : " typelike
@@ -72,7 +72,7 @@ function findf() {
 		elif [[ "$likedirectory" == "n" || "$likedirectory" == "N" ]]; then
 			# ----------\Search entered path\----------
 			read -p "Enter a directory : " -i "" -e addressdirectory
-		    echo "-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/"
+		    echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${noColor}"
 
 		    read -p "Please enter the name of music wich you search : " name
 		    read -p "Please Select your type d {directory} f {file} : " typelike

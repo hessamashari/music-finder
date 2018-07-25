@@ -20,14 +20,14 @@ function findf() {
 	clear
 
 	echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${noColor}"
-	echo "Please Select your path "
+	echo -e "${yellow}Please Select your path ${noColor}"
 
 	read -p "Do you like to serach all in of system (Requires root access)? [Y/n] " all_system
 
 	if [[ "$all_system" == "" || "$all_system" == "y" || "$all_system" == "Y" ]]; then
 		# ----------\Search all of file system\----------
 	    echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${noColor}"
-	    echo "This operation may take a while!"
+	    echo -e "This operation may take a while!"
 
 	    read -p "Please enter the name of music wich you search : " name
 	    read -p "Please Select your type d {directory} f {file} : " typelike
@@ -72,21 +72,25 @@ function findf() {
 		elif [[ "$likedirectory" == "n" || "$likedirectory" == "N" ]]; then
 			# ----------\Search entered path\----------
 			read -p "Enter a directory : " -i "" -e addressdirectory
-		    echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${noColor}"
+				if [[ "$addressdirectory" == "/" ]]; then
+					echo -e "${red}You have to chose first option :)${noColor}"
+				else
+					echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${noColor}"
 
-		    read -p "Please enter the name of music wich you search : " name
-		    read -p "Please Select your type d {directory} f {file} : " typelike
+					read -p "Please enter the name of music wich you search : " name
+					read -p "Please Select your type d {directory} f {file} : " typelike
 
-		    if [[ $typelike == "d" ]]; then
-		    	# Search and play directory
-		        find $addressdirectory -type d -name $name
-		    elif [[ $typelike == "f" ]]; then
-		        echo "Install the mplayer if you want to play music after find it"
-		        # Search and play music whit Mplayer
-		        find $addressdirectory -type f -name "*$name*" -exec mplayer {} \;
-		    else
-		        echo -e "${red}Your type is not true!${noColor}"
-		    fi
+					if [[ $typelike == "d" ]]; then
+						# Search and play directory
+						find $addressdirectory -type d -name $name
+					elif [[ $typelike == "f" ]]; then
+						echo "Install the mplayer if you want to play music after find it"
+						# Search and play music whit Mplayer
+						find $addressdirectory -type f -name "*$name*" -exec mplayer {} \;
+					else
+						echo -e "${red}Your type is not true!${noColor}"
+					fi
+				fi
 		else
 			echo -e "${red}Invalid argument!${noColor}"
 		fi

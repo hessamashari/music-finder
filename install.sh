@@ -16,7 +16,7 @@ check_distro=0
 codename="lsb_release -c | awk {'print $2'}"
 architecture="dpkg --print-architecture"
 
-echo -e "${green} Enter your password for install dependensies\n${noColor}"
+echo -e "${green} Enter your password for install dependencies\n${noColor}"
 if pacman -Q &> /dev/null; then # Check Arch
 	sudo pacman -S mplayer
 	# Check user's entered password
@@ -54,7 +54,7 @@ fi
 
 # ----------\Adding Music-finder Command\----------
 if [ "$check_distro" == "0" ]; then
-    sudo cp music-finder /usr/bin/music-finder 
+    sudo cp music-finder /usr/bin/music-finder
     sudo chmod 755 /usr/bin/music-finder
     echo -e "\n ${green}music-finder succesfully installed ${noColor}"
 else

@@ -71,7 +71,7 @@ function findf() {
 		    fi
 		elif [[ "$likedirectory" == "n" || "$likedirectory" == "N" ]]; then
 			# ----------\Search entered path\----------
-			read -p "Enter a directory : " -i "" -e addressdirectory 
+			read -p "Enter a directory : " -i "" -e addressdirectory
 		    echo "-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/"
 
 		    read -p "Please enter the name of music wich you search : " name
@@ -139,7 +139,7 @@ function uninstall() {
 				del_dependes="1"
 			fi
 		else
-			echo -e "${red}Your distro is neither archbase nor debianbase nor redhatbase nor susebase So, The script is not going to work in your distro and you have uninstall the dependensies manually. for more information read README.md"
+			echo -e "${red}Your distro is neither archbase nor debianbase nor redhatbase nor susebase So, The script is not going to work in your distro and you have uninstall the dependencies manually. for more information read README.md"
 			del_dependes="1"
 		fi
 

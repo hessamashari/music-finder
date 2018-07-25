@@ -17,7 +17,7 @@ $ ./install.sh
 
 ### Manually
 
-*Install dependensies*
+*Install dependencies*
 
 **In __Debian__ base distributions (like Ubuntu) try :**
 

@@ -201,5 +201,6 @@ case "$1" in
     "--update" | "-U")    update    ;;
 	"--uninstall")    uninstall    ;;
 	"--help" | "-h")    usage    ;;
+	*)    usage    ;;
 esac;
 exit 0

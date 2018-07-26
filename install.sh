@@ -12,7 +12,7 @@ white='\033[0;37m'        # white
 
 # ----------\Main\---------
 check_distro=0
-#Checking if the distro is DebianBase / ArchBase / RedHatBase/ SuseBase and running the correct command
+#Checking if the distro is DebianBase / ArchBase / RedHatBase / SuseBase and running the correct command
 codename="lsb_release -c | awk {'print $2'}"
 architecture="dpkg --print-architecture"
 

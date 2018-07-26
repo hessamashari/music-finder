@@ -109,7 +109,7 @@ function uninstall() {
 	# ----------\Uninstall music-finder\---------
 	if [[ "$delete" == "y" || "$delete" == "Y" ]]; then
 		del_dependes=0
-		#Checking if the distro is debianbase / archbase / redhatbase/ openSUSEbase and running the correct command
+		#Checking if the distro is DebianBase / ArchBase / RedHatBase / SuseBase and running the correct command
 		codename="lsb_release -c | awk {'print $2'}"
 		architecture="dpkg --print-architecture"
 		if pacman -Q &> /dev/null; then # Check Arch

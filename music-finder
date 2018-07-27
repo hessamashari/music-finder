@@ -34,11 +34,11 @@ function findf() {
 
 	    if [[ $typelike == "d" ]]; then
 	    	# Search directory
-	        sudo find  / -type d -name $name
+	        sudo find  / -type d -iname $name
 	    elif [[ $typelike == "f" ]]; then
 	        echo -e "${orange}Install the mplayer if you want to play music after find it${noColor}"
 	        # Search and play music whit Mplayer
-	        sudo find / -type f -name "*$name*" -exec mplayer {} \;
+	        sudo find / -type f -iname "*$name*" -exec mplayer {} \;
 	        # Massage after play music
 	        #if [[ "$?" == "0" ]]; then
 	        #	echo -e "${green} Music is completely finished ${noColor}"
@@ -61,11 +61,11 @@ function findf() {
 
 		    if [[ $typelike == "d" ]]; then
 		    	# Search directory
-		        find  $PWD -type d -name $name
+		        find  $PWD -type d -iname $name
 		    elif [[ $typelike == "f" ]]; then
 		        echo -e "${orange}Install the mplayer if you want to play music after find it${noColor}"
 		        # Search and play music whit Mplayer
-		        find  $PWD -type f -name "*$name*" -exec mplayer {} \;
+		        find  $PWD -type f -iname "*$name*" -exec mplayer {} \;
 		    else
 		        echo -e "${red}Your type is not true!${noColor}"
 		    fi
@@ -82,11 +82,11 @@ function findf() {
 
 					if [[ $typelike == "d" ]]; then
 						# Search directory
-						find $addressdirectory -type d -name $name
+						find $addressdirectory -type d -iname $name
 					elif [[ $typelike == "f" ]]; then
 						echo -e "${orange}Install the mplayer if you want to play music after find it${noColor}"
 						# Search and play music whit Mplayer
-						find $addressdirectory -type f -name "*$name*" -exec mplayer {} \;
+						find $addressdirectory -type f -iname "*$name*" -exec mplayer {} \;
 					else
 						echo -e "${red}Your type is not true!${noColor}"
 					fi

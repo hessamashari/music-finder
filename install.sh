@@ -11,20 +11,12 @@ blue='\033[0;34m'         # blue
 white='\033[0;37m'        # white
 
 # ----------\Main\---------
-check_distro=0
+check_distro="0"
 #Checking if the distro is DebianBase / ArchBase / RedHatBase / SuseBase and running the correct command
-codename="lsb_release -c | awk {'print $2'}"
-architecture="dpkg --print-architecture"
 
 echo -e "${green} Enter your password for install dependencies\n${noColor}"
 if pacman -Q &> /dev/null; then # Check Arch
 	sudo pacman -S mplayer
-	# Check user's entered password
-	if [[ "$?" == "1" ]]; then
-		check_distro="1"
-	fi
-elif [[ "$codename" == "bionic" ]] && [[ "$architecture" == "armhf" ]]; then # Check Ubuntu Server
-	sudo apt install mplayer
 	# Check user's entered password
 	if [[ "$?" == "1" ]]; then
 		check_distro="1"

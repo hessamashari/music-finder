@@ -17,6 +17,31 @@ white='\033[0;37m'        # white
 
 # ----------\Find music function\----------
 function findf() {
+	local input_dir="$1"
+	read -p "Please enter the name of music wich you search : " name
+	read -p "Please Select your type d {directory} f {file} : " typelike
+
+	if [[ $typelike == "d" ]]; then
+		# Search directory
+		sudo find  $dir -type d -iname $name
+	elif [[ $typelike == "f" ]]; then
+		echo -e "${orange}Install the mplayer if you want to play music after find it${noColor}"
+		# Search and play music whit Mplayer
+		sudo find $input_dir -type f -iname "*$name*" -exec mplayer {} \;
+		# Massage after play music
+		#if [[ "$?" == "0" ]]; then
+		#	echo -e "${green} Music is completely finished ${noColor}"
+		#	exit 0
+		#else
+		#	echo -e "${red} Music is not completely finished ${noColor}"
+		#fi
+	else
+		echo -e "${red}Your type is not true!${noColor}"
+	fi
+}
+
+# ----------\Select directory function\----------
+function choose_dir() {
 	clear
 
 	echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${noColor}"
@@ -29,26 +54,7 @@ function findf() {
 	    echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${noColor}"
 	    echo -e "This operation may take a while!"
 
-	    read -p "Please enter the name of music wich you search : " name
-	    read -p "Please Select your type d {directory} f {file} : " typelike
-
-	    if [[ $typelike == "d" ]]; then
-	    	# Search directory
-	        sudo find  / -type d -iname $name
-	    elif [[ $typelike == "f" ]]; then
-	        echo -e "${orange}Install the mplayer if you want to play music after find it${noColor}"
-	        # Search and play music whit Mplayer
-	        sudo find / -type f -iname "*$name*" -exec mplayer {} \;
-	        # Massage after play music
-	        #if [[ "$?" == "0" ]]; then
-	        #	echo -e "${green} Music is completely finished ${noColor}"
-	        #	exit 0
-	        #else
-	        #	echo -e "${red} Music is not completely finished ${noColor}"
-	        #fi
-	    else
-	        echo -e "${red}Your type is not true!${noColor}"
-	    fi
+		findf "/"
 	elif [[ "$all_system" == "n" || "$all_system" == "N" ]]; then
 		read -p "Do you like search this directory? [Y/n] " likedirectory
 
@@ -56,40 +62,14 @@ function findf() {
 			# ----------\Search current directory\----------
 		    echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${noColor}"
 
-		    read -p "Please enter the name of music wich you search : " name
-		    read -p "Please Select your type d {directory} f {file} : " typelike
-
-		    if [[ $typelike == "d" ]]; then
-		    	# Search directory
-		        find  $PWD -type d -iname $name
-		    elif [[ $typelike == "f" ]]; then
-		        echo -e "${orange}Install the mplayer if you want to play music after find it${noColor}"
-		        # Search and play music whit Mplayer
-		        find  $PWD -type f -iname "*$name*" -exec mplayer {} \;
-		    else
-		        echo -e "${red}Your type is not true!${noColor}"
-		    fi
+			findf "$PWD"
 		elif [[ "$likedirectory" == "n" || "$likedirectory" == "N" ]]; then
 			# ----------\Search entered path\----------
 			read -p "Enter a directory : " -i "" -e addressdirectory
 				if [[ "$addressdirectory" == "/" ]]; then
 					echo -e "${red}You have to chose first option :)${noColor}"
 				else
-					echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${noColor}"
-
-					read -p "Please enter the name of music wich you search : " name
-					read -p "Please Select your type d {directory} f {file} : " typelike
-
-					if [[ $typelike == "d" ]]; then
-						# Search directory
-						find $addressdirectory -type d -iname $name
-					elif [[ $typelike == "f" ]]; then
-						echo -e "${orange}Install the mplayer if you want to play music after find it${noColor}"
-						# Search and play music whit Mplayer
-						find $addressdirectory -type f -iname "*$name*" -exec mplayer {} \;
-					else
-						echo -e "${red}Your type is not true!${noColor}"
-					fi
+					findf "$addressdirectory"
 				fi
 		else
 			echo -e "${red}Invalid argument!${noColor}"
@@ -108,7 +88,7 @@ function uninstall() {
 
 	# ----------\Uninstall music-finder\---------
 	if [[ "$delete" == "y" || "$delete" == "Y" ]]; then
-		del_dependes=0
+		del_dependecies="0"
 		#Checking if the distro is DebianBase / ArchBase / RedHatBase / SuseBase and running the correct command
 		codename="lsb_release -c | awk {'print $2'}"
 		architecture="dpkg --print-architecture"
@@ -116,40 +96,40 @@ function uninstall() {
 			sudo pacman -Rs mplayer
 			# Check user's entered password
 			if [[ "$?" == "1" ]]; then
-				del_dependes="1"
+				del_dependecies="1"
 			fi
 		elif [[ "$codename" == "bionic" ]] && [[ "$architecture" == "armhf" ]]; then # Check Ubuntu Server
 			sudo apt remove mplayer
 			# Check user's entered password
 			if [[ "$?" == "1" ]]; then
-				del_dependes="1"
+				del_dependecies="1"
 			fi
 		elif apt list --installed &> /dev/null; then # Check Debian
 			sudo apt remove mplayer
 			# Check user's entered password
 			if [[ "$?" == "1" ]]; then
-				del_dependes="1"
+				del_dependecies="1"
 			fi
 		elif dnf list &> /dev/null; then # Check Fedora
 			sudo dnf remove mplayer
 			# Check user's entered password
 			if [[ "$?" == "1" ]]; then
-				del_dependes="1"
+				del_dependecies="1"
 			fi
 		elif zypper search i+ &> /dev/null; then # Check openSUSE
 			sudo zypper remove mplayer
 			# Check user's entered password
 			if [[ "$?" == "1" ]]; then
-				del_dependes="1"
+				del_dependecies="1"
 			fi
 		else
 			echo -e "${red}Your distro is neither ArchBase or DebianBase or RedHatBase or SuseBase So, The script is not going to work in your distro and you have uninstall the dependencies manually. for more information read README.md"
-			del_dependes="1"
+			del_dependecies="1"
 		fi
 
 		sudo rm -f /usr/bin/music-finder
 		# ----------\Removing Music-finder Command\----------
-		if [[ "$del_dependes" == "0" ]]; then
+		if [[ "$del_dependecies" == "0" ]]; then
 		    echo -e "\n ${red}music-finder succesfully uninstalled :( ${noColor}"
 		else
 			echo -e "\n ${green}music-finder doesn't uninstall succesfully :) ${noColor}"
@@ -197,7 +177,7 @@ function usage() {
 
 # ----------\Input options\----------
 case "$1" in
-    "")    findf    ;;
+    "")    choose_dir    ;;
     "--update" | "-U")    update    ;;
 	"--uninstall")    uninstall    ;;
 	"--help" | "-h")    usage    ;;

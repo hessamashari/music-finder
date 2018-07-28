@@ -7,13 +7,13 @@
 ######################################################
 
 
-noColor='\033[0m'       # Text mode
+noColor="\033[0m"       # Text mode
 # Colors
-red='\033[0;31m'          # red
-green='\033[0;32m'        # green
-orange='\033[0;33m'       # orange
-blue='\033[0;34m'         # blue
-white='\033[0;37m'        # white
+red="\033[0;31m"          # red
+green="\033[0;32m"        # green
+orange="\033[0;33m"       # orange
+blue="\033[0;34m"         # blue
+white="\033[0;37m"        # white
 
 # ----------\Find music function\----------
 function findf() {
@@ -90,16 +90,9 @@ function uninstall() {
 	if [[ "$delete" == "y" || "$delete" == "Y" ]]; then
 		del_dependecies="0"
 		#Checking if the distro is DebianBase / ArchBase / RedHatBase / SuseBase and running the correct command
-		codename="lsb_release -c | awk {'print $2'}"
-		architecture="dpkg --print-architecture"
+
 		if pacman -Q &> /dev/null; then # Check Arch
 			sudo pacman -Rs mplayer
-			# Check user's entered password
-			if [[ "$?" == "1" ]]; then
-				del_dependecies="1"
-			fi
-		elif [[ "$codename" == "bionic" ]] && [[ "$architecture" == "armhf" ]]; then # Check Ubuntu Server
-			sudo apt remove mplayer
 			# Check user's entered password
 			if [[ "$?" == "1" ]]; then
 				del_dependecies="1"

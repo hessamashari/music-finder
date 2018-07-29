@@ -78,6 +78,7 @@ function choose_dir() {
 		elif [[ "$likedirectory" == "n" || "$likedirectory" == "N" ]]; then
 			# ----------\Search entered path\----------
 			read -p "Enter a directory : " -i "" -e addressdirectory
+			echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${normal}"
 				if [[ "$addressdirectory" == "/" ]]; then
 					echo -e "${red}You have to chose first option :)${normal}"
 				else

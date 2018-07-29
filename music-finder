@@ -7,13 +7,13 @@
 ######################################################
 
 
-noColor="\033[0m"       # Text mode
+normal="$(printf '\033[0m')"          # Text mode
 # Colors
-red="\033[0;31m"          # red
-green="\033[0;32m"        # green
-orange="\033[0;33m"       # orange
-blue="\033[0;34m"         # blue
-white="\033[0;37m"        # white
+red="$(printf '\033[0;31m')"  		  # red
+green="$(printf '\033[0;32m')"        # green
+orange="$(printf '\033[0;33m')"       # orange
+blue="$(printf '\033[0;34m')"         # blue
+white="$(printf '\033[0;37m')"        # white
 
 # ----------\Find music function\----------
 function findf() {
@@ -23,20 +23,32 @@ function findf() {
 
 	if [[ $typelike == "d" ]]; then
 		# Search directory
-		sudo find  $dir -type d -iname $name
+		if [[ "$input_dir" == "/" ]]; then
+			sudo find  $input_dir -type d -iname $name
+		else
+			find  $input_dir -type d -iname $name
+		fi
 	elif [[ $typelike == "f" ]]; then
-		echo -e "${orange}Install the mplayer if you want to play music after find it${noColor}"
+		echo -e "${orange}Install the mplayer if you want to play music after find it${normal}"
 		# Search and play music whit Mplayer
-		sudo find $input_dir -type f -iname "*$name*" -exec mplayer {} \;
-		# Massage after play music
-		#if [[ "$?" == "0" ]]; then
-		#	echo -e "${green} Music is completely finished ${noColor}"
-		#	exit 0
-		#else
-		#	echo -e "${red} Music is not completely finished ${noColor}"
-		#fi
+		if [[ "$input_dir" == "/" ]]; then
+			sudo find $input_dir -type f -iname "*$name*" -exec mplayer {} \;
+		else
+			find $input_dir -type f -iname "*$name*" -exec mplayer {} \;
+		fi
+		# Question to play another music
+		read -p "${green}Do you want to play another? [Y/n] ${normal}" another
+
+		if [[ "$another" == "" || "$another" == "Y" || "$another" == "y" ]]; then
+			choose_dir
+		elif [[ "$another" == "N" || "$another" == "n" ]]; then
+			exit 1
+		else
+			echo -e "${red}Invalid argument!${normal}"
+		fi
 	else
-		echo -e "${red}Your type is not true!${noColor}"
+		echo -e "${red}Your type is not true!${normal}"
+		exit 1
 	fi
 }
 
@@ -44,14 +56,14 @@ function findf() {
 function choose_dir() {
 	clear
 
-	echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${noColor}"
-	echo -e "${orange}Please Select your path ${noColor}"
+	echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${normal}"
+	echo -e "${orange}Please Select your path ${normal}"
 
 	read -p "Do you like to serach all of your system (Requires root access)? [Y/n] " all_system
 
 	if [[ "$all_system" == "" || "$all_system" == "y" || "$all_system" == "Y" ]]; then
 		# ----------\Search all of file system\----------
-	    echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${noColor}"
+	    echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${normal}"
 	    echo -e "This operation may take a while!"
 
 		findf "/"
@@ -60,24 +72,24 @@ function choose_dir() {
 
 		if [[ "$likedirectory" == "" || "$likedirectory" == "y" || "$likedirectory" == "Y" ]]; then
 			# ----------\Search current directory\----------
-		    echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${noColor}"
+		    echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${normal}"
 
 			findf "$PWD"
 		elif [[ "$likedirectory" == "n" || "$likedirectory" == "N" ]]; then
 			# ----------\Search entered path\----------
 			read -p "Enter a directory : " -i "" -e addressdirectory
 				if [[ "$addressdirectory" == "/" ]]; then
-					echo -e "${red}You have to chose first option :)${noColor}"
+					echo -e "${red}You have to chose first option :)${normal}"
 				else
 					findf "$addressdirectory"
 				fi
 		else
-			echo -e "${red}Invalid argument!${noColor}"
+			echo -e "${red}Invalid argument!${normal}"
 		fi
 	else
-	    echo -e "${red}Invalid argument!${noColor}"
+	    echo -e "${red}Invalid argument!${normal}"
 	fi
-	echo -e "${green}done!${noColor}"
+	echo -e "${green}done!${normal}"
 }
 
 # ----------\Uninstall function\----------
@@ -116,23 +128,23 @@ function uninstall() {
 				del_dependecies="1"
 			fi
 		else
-			echo -e "${red}Your distro is neither ArchBase or DebianBase or RedHatBase or SuseBase So, The script is not going to work in your distro and you have uninstall the dependencies manually. for more information read README.md"
+			echo -e "${red}Your distro is neither ArchBase or DebianBase or RedHatBase or SuseBase So, The script is not going to work in your distro and you have uninstall the dependencies manually. for more information read README.md${normal}"
 			del_dependecies="1"
 		fi
 
 		sudo rm -f /usr/bin/music-finder
 		# ----------\Removing Music-finder Command\----------
 		if [[ "$del_dependecies" == "0" ]]; then
-		    echo -e "\n ${red}music-finder succesfully uninstalled :( ${noColor}"
+		    echo -e "\n ${red}music-finder succesfully uninstalled :( ${normal}"
 		else
-			echo -e "\n ${green}music-finder doesn't uninstall succesfully :) ${noColor}"
+			echo -e "\n ${green}music-finder doesn't uninstall succesfully :) ${normal}"
 			exit 1
 		fi
 	elif [[ "$delete" == "" || "$delete" == "n" || "$delete" == "N" ]]; then
-		echo -e "\n ${green}music-finder is still installed :) ${noColor}"
+		echo -e "\n ${green}music-finder is still installed :) ${normal}"
 		exit 0
 	else
-		echo -e "${red}Invalid argument! ${noColor}"
+		echo -e "${red}Invalid argument! ${normal}"
 		exit 1
 	fi
 }
@@ -149,7 +161,7 @@ function update() {
 		sudo cp music-finder /usr/bin/music-finder
 		sudo chmod 755 /usr/bin/music-finder
 		sudo rm -rf /tmp/music-finder
-		echo -e " ${green}Music_Finder updated succesfully! ${noColor}"
+		echo -e " ${green}Music_Finder updated succesfully! ${normal}"
 	else
 		sudo rm -rf /tmp/music_finder
 		cd /tmp

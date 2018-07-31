@@ -188,5 +188,5 @@ case "$1" in
 	"--uninstall")    uninstall    ;;
 	"--help" | "-h")    usage    ;;
 	*)    usage    ;;
-esac;
+esac
 exit 0

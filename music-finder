@@ -21,20 +21,20 @@ function findf() {
 	read -p "Please enter the name of music wich you search : " name
 	read -p "Please Select your type d {directory} f {file} : " typelike
 
-	if [[ $typelike == "d" ]]; then
+	if [[ "$typelike" == "D" || "$typelike" == "d" ]]; then
 		# Search directory
 		if [[ "$input_dir" == "/" ]]; then
-			sudo find  $input_dir -type d -iname $name
+			sudo find "$input_dir" -type d -iname "$name"
 		else
-			find  $input_dir -type d -iname $name
+			find "$input_dir" -type d -iname "$name"
 		fi
-	elif [[ $typelike == "f" ]]; then
+	elif [[ "$typelike" == "F" || "$typelike" == "f" ]]; then
 		echo -e "${orange}Install the mplayer if you want to play music after find it${normal}"
 		# Search and play music whit Mplayer
 		if [[ "$input_dir" == "/" ]]; then
-			sudo find $input_dir -type f -iname "*$name*" -exec mplayer {} \;
+			sudo find "$input_dir" -type f -iname "*$name*" -exec mplayer {} \;
 		else
-			find $input_dir -type f -iname "*$name*" -exec mplayer {} \;
+			find "$input_dir" -type f -iname "*$name*" -exec mplayer {} \;
 		fi
 		# Question to play another music
 		read -p "${green}Do you want to play another? [Y/n] ${normal}" another

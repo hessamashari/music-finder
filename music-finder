@@ -150,7 +150,7 @@ function uninstall() {
 	fi
 }
 
-# ----------\Update fiunction\----------
+# ----------\Update function\----------
 function update() {
 	clear
 

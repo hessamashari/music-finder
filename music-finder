@@ -126,7 +126,7 @@ function choose_dir() {
 	    echo -e "${red}Invalid argument!${normal}"
 		exit 1
 	fi
-	echo -e "${green}done!${normal}"
+	echo -e "${green}\ndone!${normal}"
 }
 
 # ----------\Uninstall function\----------

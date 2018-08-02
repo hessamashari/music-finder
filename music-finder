@@ -169,8 +169,9 @@ function uninstall() {
 			del_dependecies="1"
 		fi
 
-		sudo rm -f /usr/bin/music-finder
 		# Removing Music-finder Command
+		sudo rm -f /usr/bin/music-finder
+
 		if [[ "$del_dependecies" == "0" ]]; then
 		    echo -e "\n ${red}music-finder succesfully uninstalled :( ${normal}"
 		else
@@ -191,6 +192,7 @@ function update() {
 	clear
 
 	if [[ -d /tmp/music_finder ]]; then
+		sudo rm -rf /tmp/music_finder
 		cd /tmp
 		git clone https://gitlab.com/Music_Finder/music-finder.git
 		sleep 2
@@ -200,7 +202,6 @@ function update() {
 		sudo rm -rf /tmp/music-finder
 		echo -e " ${green}Music_Finder updated succesfully! ${normal}"
 	else
-		sudo rm -rf /tmp/music_finder
 		cd /tmp
 		git clone https://gitlab.com/Music_Finder/music-finder.git
 		sleep 2

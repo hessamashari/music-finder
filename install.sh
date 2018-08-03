@@ -12,7 +12,7 @@ white="$(printf '\033[0;37m')"        # white
 
 # ----------\Install dependencies\---------
 check_distro="0"
-#Checking if the distro is DebianBase / ArchBase / RedHatBase / SuseBase and running the correct command
+# Checking if the distro is DebianBase / ArchBase / RedHatBase / SuseBase and running the correct command
 
 echo -e "${green} Enter your password for install dependencies\n${normal}"
 if pacman -Q &> /dev/null; then # Check Arch

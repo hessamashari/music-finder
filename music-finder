@@ -2,12 +2,12 @@
 
 
 ######################################################
-#                   Music_Finder V1.1                #
+#                  Music_Finder V1.1                 #
 #  https://gitlab.com/Music_Finder/music-finder.git  #
 ######################################################
 
 
-normal="$(printf '\033[0m')"          # Text mode
+normal="$(printf '\033[0m')"          # text mode
 # Colors
 red="$(printf '\033[0;31m')"  		  # red
 green="$(printf '\033[0;32m')"        # green
@@ -19,62 +19,62 @@ white="$(printf '\033[0;37m')"        # white
 function play_in_dir() {
 	directories="$1"
 	# Play music in serched directory
-	for dir_name in $directories; do
-		if cd "$dir_name" &> /dev/null; then
+	for dirName in $directories; do
+		if cd "$dirName" &> /dev/null; then
 			echo -e "\n"
-			read -p "${green}Do you want to play musics in ${orange}'$dir_name'${normal}? [Y/n] " play_directory
-			if [[ "$play_directory" == "" || "$play_directory" == "Y" || "$play_directory" == "y" ]]; then
-				mplayer $dir_name/*
-			elif [[ "$play_directory" == "N" || "$play_directory" == "n" ]]; then
+			read -p "${green}Do you want to play musics in ${orange}'$dirName'${normal}? [Y/n] " playInDirectory
+			if [[ "$playInDirectory" == "" || "$playInDirectory" == "Y" || "$playInDirectory" == "y" ]]; then
+				mplayer $dirName/*
+			elif [[ "$playInDirectory" == "N" || "$playInDirectory" == "n" ]]; then
 				continue
 			else
 				echo -e "${red}Invalid argument!${normal}"
 				exit 1
 			fi
 		# For directories witch has root owner
-		elif sudo su -c "cd '$dir_name'" &> /dev/null; then
-			sudo mplayer $dir_name/*
+		elif sudo su -c "cd '$dirName'" &> /dev/null; then
+			sudo mplayer $dirName/*
 		else
-			echo -e "${red}\nCannot cd to directory ${orange}'$dir_name'${normal}"
+			echo -e "${red}\nCannot cd to directory ${orange}'$dirName'${normal}"
 			exit 1
 		fi
 	done
 }
 
 # ----------\Find music function\----------
-function findf() {
-	local input_dir="$1"
+function find_function() {
+	local inputDir="$1"
 	read -p "Please enter the name of music wich you search : " name
-	read -p "Please Select your type d {directory} f {file} : " typelike
+	read -p "Please Select your type d {directory} f {file} : " selectedType
 
-	if [[ "$typelike" == "D" || "$typelike" == "d" ]]; then
+	if [[ "$selectedType" == "D" || "$selectedType" == "d" ]]; then
 		# Search directory
-		if [[ "$input_dir" == "/" ]]; then
-			sudo find "$input_dir" -type d -iname "$name"
-			local search_dir=$(sudo find "$input_dir" -type d -iname "$name")
+		if [[ "$inputDir" == "/" ]]; then
+			sudo find "$inputDir" -type d -iname "$name"
+			local searchDir=$(sudo find "$inputDir" -type d -iname "$name")
 
-			play_in_dir "$search_dir"
+			play_in_dir "$searchDir"
 		else
-			find "$input_dir" -type d -iname "$name"
-			local search_dir=$(find "$input_dir" -type d -iname "$name")
+			find "$inputDir" -type d -iname "$name"
+			local searchDir=$(find "$inputDir" -type d -iname "$name")
 
-			play_in_dir "$search_dir"
+			play_in_dir "$searchDir"
 		fi
 
-	elif [[ "$typelike" == "F" || "$typelike" == "f" ]]; then
+	elif [[ "$selectedType" == "F" || "$selectedType" == "f" ]]; then
 		echo -e "${orange}Install the mplayer if you want to play music after find it${normal}"
 		# Search and play music whit Mplayer
-		if [[ "$input_dir" == "/" ]]; then
-			sudo find "$input_dir" -type f -iname "*$name*" -exec mplayer {} \;
+		if [[ "$inputDir" == "/" ]]; then
+			sudo find "$inputDir" -type f -iname "*$name*" -exec mplayer {} \;
 		else
-			find "$input_dir" -type f -iname "*$name*" -exec mplayer {} \;
+			find "$inputDir" -type f -iname "*$name*" -exec mplayer {} \;
 		fi
 		# Question to play another music
-		read -p "${green}Do you want to play another? [Y/n] ${normal}" another
+		read -p "${green}Do you want to play another? [Y/n] ${normal}" playAnotherMusic
 
-		if [[ "$another" == "" || "$another" == "Y" || "$another" == "y" ]]; then
+		if [[ "$playAnotherMusic" == "" || "$playAnotherMusic" == "Y" || "$playAnotherMusic" == "y" ]]; then
 			choose_dir
-		elif [[ "$another" == "N" || "$another" == "n" ]]; then
+		elif [[ "$playAnotherMusic" == "N" || "$playAnotherMusic" == "n" ]]; then
 			return
 		else
 			echo -e "${red}Invalid argument!${normal}"
@@ -93,30 +93,30 @@ function choose_dir() {
 	echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${normal}"
 	echo -e "${orange}Please Select your path ${normal}"
 
-	read -p "Do you like to serach all of your system (Requires root access)? [Y/n] " all_system
+	read -p "Do you like to serach all of your system (Requires root access)? [Y/n] " searchAllSystem
 
-	if [[ "$all_system" == "" || "$all_system" == "y" || "$all_system" == "Y" ]]; then
+	if [[ "$searchAllSystem" == "" || "$searchAllSystem" == "y" || "$searchAllSystem" == "Y" ]]; then
 		# Search all of file system
 	    echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${normal}"
 	    echo -e "This operation may take a while!"
 
-		findf "/"
-	elif [[ "$all_system" == "n" || "$all_system" == "N" ]]; then
+		find_function "/"
+	elif [[ "$searchAllSystem" == "n" || "$searchAllSystem" == "N" ]]; then
 		read -p "Do you like search this directory? [Y/n] " likedirectory
 
 		if [[ "$likedirectory" == "" || "$likedirectory" == "y" || "$likedirectory" == "Y" ]]; then
 			# Search current directory
 		    echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${normal}"
 
-			findf "$PWD"
+			find_function "$PWD"
 		elif [[ "$likedirectory" == "n" || "$likedirectory" == "N" ]]; then
 			# Search entered path
-			read -p "Enter a directory : " -i "" -e addressdirectory
+			read -p "Enter a directory : " -i "" -e userEnteredDirectory
 			echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${normal}"
-				if [[ "$addressdirectory" == "/" ]]; then
+				if [[ "$userEnteredDirectory" == "/" ]]; then
 					echo -e "${red}You have to chose first option :)${normal}"
 				else
-					findf "$addressdirectory"
+					find_function "$userEnteredDirectory"
 				fi
 		else
 			echo -e "${red}Invalid argument!${normal}"
@@ -133,52 +133,52 @@ function choose_dir() {
 function uninstall() {
 	clear
 
-	read -p "Are you sure to uninstall music-finder??!! [y/N] " delete
+	read -p "Are you sure to uninstall music-finder??!! [y/N] " deletMusicFinder
 
 	# Remove dependencies
-	if [[ "$delete" == "y" || "$delete" == "Y" ]]; then
-		del_dependecies="0"
+	if [[ "$deletMusicFinder" == "y" || "$deletMusicFinder" == "Y" ]]; then
+		deleteDependencies="0"
 		# Checking if the distro is DebianBase / ArchBase / RedHatBase / SuseBase and running the correct command
 
 		if pacman -Q &> /dev/null; then # Check Arch
 			sudo pacman -Rs mplayer
 			# Check user's entered password
 			if [[ "$?" == "1" ]]; then
-				del_dependecies="1"
+				deleteDependencies="1"
 			fi
 		elif apt list --installed &> /dev/null; then # Check Debian
 			sudo apt remove mplayer
 			# Check user's entered password
 			if [[ "$?" == "1" ]]; then
-				del_dependecies="1"
+				deleteDependencies="1"
 			fi
 		elif dnf list &> /dev/null; then # Check Fedora
 			sudo dnf remove mplayer
 			# Check user's entered password
 			if [[ "$?" == "1" ]]; then
-				del_dependecies="1"
+				deleteDependencies="1"
 			fi
 		elif zypper search i+ &> /dev/null; then # Check openSUSE
 			sudo zypper remove mplayer
 			# Check user's entered password
 			if [[ "$?" == "1" ]]; then
-				del_dependecies="1"
+				deleteDependencies="1"
 			fi
 		else
 			echo -e "${red}Your distro is neither ArchBase or DebianBase or RedHatBase or SuseBase So, The script is not going to work in your distro and you have uninstall the dependencies manually. for more information read README.md${normal}"
-			del_dependecies="1"
+			deleteDependencies="1"
 		fi
 
 		# Removing Music-finder Command
 		sudo rm -f /usr/bin/music-finder
 
-		if [[ "$del_dependecies" == "0" ]]; then
+		if [[ "$deleteDependencies" == "0" ]]; then
 		    echo -e "\n ${red}music-finder succesfully uninstalled :( ${normal}"
 		else
 			echo -e "\n ${green}music-finder doesn't uninstall succesfully :) ${normal}"
 			exit 1
 		fi
-	elif [[ "$delete" == "" || "$delete" == "n" || "$delete" == "N" ]]; then
+	elif [[ "$deletMusicFinder" == "" || "$deletMusicFinder" == "n" || "$deletMusicFinder" == "N" ]]; then
 		echo -e "\n ${green}music-finder is still installed :) ${normal}"
 		return
 	else

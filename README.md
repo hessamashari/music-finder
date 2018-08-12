@@ -17,27 +17,27 @@ $ ./install.sh
 
 ### Manually
 
-*Install dependencies*
+#### Install dependencies
 
-**In __Debian__ base distributions (like Ubuntu) try :**
+*In __Debian__ base distributions (like Ubuntu) try :*
 
 ```sh
 $ sudo apt install mplayer
 ```
 
-**In __RedHat__ base distributions (like Fedora) try :**
+*In __RedHat__ base distributions (like Fedora) try :*
 
 ```sh
 $ sudo dnf install mplayer
 ```
 
-**In __Arch__ base distributions (like Manjaro) try :**
+*In __Arch__ base distributions (like Manjaro) try :*
 
 ```sh
 $ sudo pacman -S mplayer
 ```
 
-*Install script*
+#### Install script
 
 ```sh
 $ git clone https://gitlab.com/Music_Finder/music-finder.git
@@ -70,6 +70,5 @@ $ music-finder --uninstall
 $ music-player --help
 ```
 
-Exit the program with Ctrl+C :)
-
+Exit the program with Ctrl+C :)  
 Tnx!

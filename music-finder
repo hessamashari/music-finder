@@ -18,6 +18,49 @@ orange="$(printf '\033[0;33m')"       # orange
 blue="$(printf '\033[0;34m')"         # blue
 white="$(printf '\033[0;37m')"        # white
 
+# ----------\Select directory function\----------
+function choose_dir() {
+	clear
+
+	echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${normal}"
+	echo -e "${orange}Please Select your path ${normal}"
+
+	read -p "Do you like to serach all of your system (Requires root access)? [Y/n] " searchAllSystem
+
+	if [[ "$searchAllSystem" == "" || "$searchAllSystem" == "y" || "$searchAllSystem" == "Y" ]]; then
+		# Search all of file system
+	    echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${normal}"
+	    echo -e "This operation may take a while!"
+
+		find_function "/"
+	elif [[ "$searchAllSystem" == "n" || "$searchAllSystem" == "N" ]]; then
+		read -p "Do you like search this directory? [Y/n] " likedirectory
+
+		if [[ "$likedirectory" == "" || "$likedirectory" == "y" || "$likedirectory" == "Y" ]]; then
+			# Search current directory
+		    echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${normal}"
+
+			find_function "$PWD"
+		elif [[ "$likedirectory" == "n" || "$likedirectory" == "N" ]]; then
+			# Search entered path
+			read -p "Enter a directory : " -i "" -e userEnteredDirectory
+			echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${normal}"
+				if [[ "$userEnteredDirectory" == "/" ]]; then
+					echo -e "${red}You have to chose first option :)${normal}"
+				else
+					find_function "$userEnteredDirectory"
+				fi
+		else
+			echo -e "${red}Invalid argument!${normal}"
+			exit 1
+		fi
+	else
+	    echo -e "${red}Invalid argument!${normal}"
+		exit 1
+	fi
+	echo -e "${green}\ndone!${normal}"
+}
+
 # ----------\Play musics in list of directories function\----------
 function play_in_dir() {
 	directories="$1"
@@ -89,49 +132,6 @@ function find_function() {
 	fi
 }
 
-# ----------\Select directory function\----------
-function choose_dir() {
-	clear
-
-	echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${normal}"
-	echo -e "${orange}Please Select your path ${normal}"
-
-	read -p "Do you like to serach all of your system (Requires root access)? [Y/n] " searchAllSystem
-
-	if [[ "$searchAllSystem" == "" || "$searchAllSystem" == "y" || "$searchAllSystem" == "Y" ]]; then
-		# Search all of file system
-	    echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${normal}"
-	    echo -e "This operation may take a while!"
-
-		find_function "/"
-	elif [[ "$searchAllSystem" == "n" || "$searchAllSystem" == "N" ]]; then
-		read -p "Do you like search this directory? [Y/n] " likedirectory
-
-		if [[ "$likedirectory" == "" || "$likedirectory" == "y" || "$likedirectory" == "Y" ]]; then
-			# Search current directory
-		    echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${normal}"
-
-			find_function "$PWD"
-		elif [[ "$likedirectory" == "n" || "$likedirectory" == "N" ]]; then
-			# Search entered path
-			read -p "Enter a directory : " -i "" -e userEnteredDirectory
-			echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${normal}"
-				if [[ "$userEnteredDirectory" == "/" ]]; then
-					echo -e "${red}You have to chose first option :)${normal}"
-				else
-					find_function "$userEnteredDirectory"
-				fi
-		else
-			echo -e "${red}Invalid argument!${normal}"
-			exit 1
-		fi
-	else
-	    echo -e "${red}Invalid argument!${normal}"
-		exit 1
-	fi
-	echo -e "${green}\ndone!${normal}"
-}
-
 # ----------\Uninstall function\----------
 function uninstall() {
 	clear
@@ -200,19 +200,22 @@ function update() {
 
 	if [[ -d /tmp/music-finder/ ]]; then
 		sudo rm -rf /tmp/music-finder/
+		# Check access of /tmp
 		if cd /tmp/ &> /dev/null; then
 			git clone https://github.com/hessamashari/music-finder.git /tmp/music-finder
 			sleep 2
+			# Check access of /tmp/music-finder
 			if cd /tmp/music-finder/ &> /dev/null; then
+				# Replace older program with newer
 				sudo cp /tmp/music-finder/music-finder /usr/bin/music-finder
 				sudo chmod 755 /usr/bin/music-finder
+				# Check operation
 				if [[ "$?" == "0" ]]; then
 					echo -e " ${green}Music_Finder updated succesfully! ${normal}"
 				else
 					echo -e " ${red}Music_Finder doesn't update succesfully! ${normal}"
 					exit 1
 				fi
-				sudo rm -rf /tmp/music-finder
 			else
 				echo -e "${red}\nCannot cd to directory ${orange}'/tmp/music-finder'${normal}"
 				exit 1
@@ -223,18 +226,21 @@ function update() {
 		fi
 	else
 		if cd /tmp/ &> /dev/null; then
+			# Check access of /tmp
 			git clone https://github.com/hessamashari/music-finder.git /tmp/music-finder
 			sleep 2
+			# Check access of /tmp/music-finder
 			if cd /tmp/music-finder/ &> /dev/null; then
+				# Replace older program with newer
 				sudo cp /tmp/music-finder/music-finder /usr/bin/music-finder
 				sudo chmod 755 /usr/bin/music-finder
+				# Check operation
 				if [[ "$?" == "0" ]]; then
 					echo -e " ${green}Music_Finder updated succesfully! ${normal}"
 				else
 					echo -e " ${red}Music_Finder doesn't update succesfully! ${normal}"
 					exit 1
 				fi
-				sudo rm -rf /tmp/music-finder
 			else
 				echo -e "${red}\nCannot cd to directory ${orange}'/tmp/music-finder'${normal}"
 				exit 1
@@ -244,6 +250,9 @@ function update() {
 			exit 1
 		fi
 	fi
+
+	# Delet cloned repository
+	sudo rm -rf /tmp/music-finder
 }
 
 # ----------\Help function\----------

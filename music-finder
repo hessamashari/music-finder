@@ -191,8 +191,8 @@ function uninstall() {
 function update() {
 	clear
 
-	if [[ -d /tmp/music_finder ]]; then
-		sudo rm -rf /tmp/music_finder
+	if [[ -d /tmp/music-finder ]]; then
+		sudo rm -rf /tmp/music-finder
 		cd /tmp
 		git clone https://github.com/hessamashari/music-finder.git
 		sleep 2

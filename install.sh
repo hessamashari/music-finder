@@ -15,6 +15,7 @@ echo "+-------------------------------------------------------------------------
 echo "|          Music finder and music player powered by Mplayer and find command          |"
 echo "|          Author: HessamAshari                                                       |"
 echo "|          Git repository: https://github.com/hessamashari/music-finder               |"
+echo "|          Platform: GNU/Linux                                                        |"
 echo "|          Version: 1.2                                                               |"
 echo "+-------------------------------------------------------------------------------------+"
 echo -e "\n"

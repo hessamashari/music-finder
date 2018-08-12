@@ -1,8 +1,11 @@
 #!/bin/bash
 
+	# v1.0 -- add first program
+	# v1.1 -- create functions
+	# v1.2 -- fix bugs and add play_in_dir function
 
 ######################################################
-#                  Music_Finder V1.1                 #
+#                  Music_Finder V1.2                 #
 #  https://github.com/hessamashari/music-finder.git  #
 ######################################################
 

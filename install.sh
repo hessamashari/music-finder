@@ -10,6 +10,15 @@ orange="$(printf '\033[0;33m')"       # orange
 blue="$(printf '\033[0;34m')"         # blue
 white="$(printf '\033[0;37m')"        # white
 
+echo -e "\n"
+echo "+-------------------------------------------------------------------------------------+"
+echo "|          Music finder and music player powered by Mplayer and find command          |"
+echo "|          Author: HessamAshari                                                       |"
+echo "|          Git repository: https://github.com/hessamashari/music-finder               |"
+echo "|          Version: 1.2                                                               |"
+echo "+-------------------------------------------------------------------------------------+"
+echo -e "\n"
+
 # ----------\Install dependencies\---------
 checkDistro="0"
 # Checking if the distro is DebianBase / ArchBase / RedHatBase / SuseBase and running the correct command

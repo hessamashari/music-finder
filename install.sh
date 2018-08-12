@@ -16,7 +16,7 @@ checkDistro="0"
 
 echo -e "${green} Enter your password for install dependencies\n${normal}"
 if pacman -Q &> /dev/null; then # Check Arch
-	sudo pacman -S mplayer git
+	sudo pacman -S mplayer git --needed
 	# Check user's entered password
 	if [[ "$?" == "1" ]]; then
 		checkDistro="1"

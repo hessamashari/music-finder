@@ -25,7 +25,7 @@ function play_in_dir() {
 	for dirName in $directories; do
 		if cd "$dirName" &> /dev/null; then
 			echo -e "\n"
-			read -p "${green}Do you want to play musics in ${orange}'$dirName'${normal}? [Y/n] " playInDirectory
+			read -p "${green} Do you want to play musics in ${orange}'$dirName'${normal}? [Y/n] " playInDirectory
 			if [[ "$playInDirectory" == "" || "$playInDirectory" == "Y" || "$playInDirectory" == "y" ]]; then
 				mplayer $dirName/*
 			elif [[ "$playInDirectory" == "N" || "$playInDirectory" == "n" ]]; then

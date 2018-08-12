@@ -9,8 +9,8 @@
 ### Automatically
 
 ```sh
-$ git clone https://gitlab.com/Music_Finder/music-finder.git
-$ cd Search_Music_and_Playe
+$ git clone https://github.com/hessamashari/music-finder.git
+$ cd music-finder
 $ chmod +x install.sh
 $ ./install.sh
 ```
@@ -40,8 +40,8 @@ $ sudo pacman -S mplayer
 #### Install script
 
 ```sh
-$ git clone https://gitlab.com/Music_Finder/music-finder.git
-$ cd Search_Music_and_Playe
+$ git clone https://github.com/hessamashari/music-finder.git
+$ cd music-finder
 $ chmod +x music-finder
 $ sudo cp music-finder /usr/bin/music-finder
 ```

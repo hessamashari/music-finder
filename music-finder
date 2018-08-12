@@ -3,7 +3,7 @@
 
 ######################################################
 #                  Music_Finder V1.1                 #
-#  https://gitlab.com/Music_Finder/music-finder.git  #
+#  https://github.com/hessamashari/music-finder.git  #
 ######################################################
 
 
@@ -194,7 +194,7 @@ function update() {
 	if [[ -d /tmp/music_finder ]]; then
 		sudo rm -rf /tmp/music_finder
 		cd /tmp
-		git clone https://gitlab.com/Music_Finder/music-finder.git
+		git clone https://github.com/hessamashari/music-finder.git
 		sleep 2
 		cd music-finder
 		sudo cp music-finder /usr/bin/music-finder
@@ -203,7 +203,7 @@ function update() {
 		echo -e " ${green}Music_Finder updated succesfully! ${normal}"
 	else
 		cd /tmp
-		git clone https://gitlab.com/Music_Finder/music-finder.git
+		git clone https://github.com/hessamashari/music-finder.git
 		sleep 2
 		cd music-finder
 		sudo cp music-finder /usr/bin/music-finder

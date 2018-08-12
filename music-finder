@@ -133,7 +133,7 @@ function choose_dir() {
 function uninstall() {
 	clear
 
-	read -p "Are you sure to uninstall music-finder??!! [y/N] " deletMusicFinder
+	read -p "${red}Are you sure to uninstall music-finder??!! [y/N] ${normal}" deletMusicFinder
 
 	# Remove dependencies
 	if [[ "$deletMusicFinder" == "y" || "$deletMusicFinder" == "Y" ]]; then
@@ -170,10 +170,14 @@ function uninstall() {
 		fi
 
 		# Removing Music-finder Command
-		sudo rm -f /usr/bin/music-finder
-
 		if [[ "$deleteDependencies" == "0" ]]; then
-		    echo -e "\n ${red}music-finder succesfully uninstalled :( ${normal}"
+			sudo rm -f /usr/bin/music-finder
+			if [[ "$?" == "0" ]]; then
+				echo -e "\n ${red}music-finder succesfully uninstalled :( ${normal}"
+			else
+				echo -e "\n ${green}music-finder doesn't uninstall succesfully :) ${normal}"
+				exit 1
+			fi
 		else
 			echo -e "\n ${green}music-finder doesn't uninstall succesfully :) ${normal}"
 			exit 1
@@ -191,25 +195,37 @@ function uninstall() {
 function update() {
 	clear
 
-	if [[ -d /tmp/music-finder ]]; then
-		sudo rm -rf /tmp/music-finder
-		cd /tmp
-		git clone https://github.com/hessamashari/music-finder.git
-		sleep 2
-		cd music-finder
-		sudo cp music-finder /usr/bin/music-finder
-		sudo chmod 755 /usr/bin/music-finder
-		sudo rm -rf /tmp/music-finder
-		echo -e " ${green}Music_Finder updated succesfully! ${normal}"
+	if [[ -d /tmp/music-finder/ ]]; then
+		sudo rm -rf /tmp/music-finder/
+		if sudo su -c "cd /tmp/" &> /dev/null; then
+			git clone https://github.com/hessamashari/music-finder.git /tmp/music-finder
+			sleep 2
+			if cd /tmp/music-finder/ &> /dev/null; then
+				sudo cp /tmp/music-finder /usr/bin/music-finder
+				sudo chmod 755 /usr/bin/music-finder
+				sudo rm -rf /tmp/music-finder
+				echo -e " ${green}Music_Finder updated succesfully! ${normal}"
+			else
+				echo -e "${red}\nCannot cd to directory ${orange}'/tmp/music-finder'${normal}"
+			fi
+		else
+			echo -e "${red}\nCannot cd to directory ${orange}'/tmp'${normal}"
+		fi
 	else
-		cd /tmp
-		git clone https://github.com/hessamashari/music-finder.git
-		sleep 2
-		cd music-finder
-		sudo cp music-finder /usr/bin/music-finder
-		sudo chmod 755 /usr/bin/music-finder
-		sudo rm -rf /tmp/music-finder
-		echo -e " ${green}Music_Finder updated succesfully! ${normal}"
+		if sudo su -c "cd /tmp/" &> /dev/null; then
+			git clone https://github.com/hessamashari/music-finder.git /tmp/music-finder
+			sleep 2
+			if cd /tmp/music-finder/ &> /dev/null; then
+				sudo cp /tmp/music-finder /usr/bin/music-finder
+				sudo chmod 755 /usr/bin/music-finder
+				sudo rm -rf /tmp/music-finder
+				echo -e " ${green}Music_Finder updated succesfully! ${normal}"
+			else
+				echo -e "${red}\nCannot cd to directory ${orange}'/tmp/music-finder'${normal}"
+			fi
+		else
+			echo -e "${red}\nCannot cd to directory ${orange}'/tmp'${normal}"
+		fi
 	fi
 }
 

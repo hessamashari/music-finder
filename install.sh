@@ -48,7 +48,12 @@ fi
 if [ "$checkDistro" == "0" ]; then
     sudo cp music-finder /usr/bin/music-finder
     sudo chmod 755 /usr/bin/music-finder
-    echo -e "\n ${green}music-finder succesfully installed ${normal}"
+	if [[ "$?" == "0" ]]; then
+		echo -e "\n ${green}music-finder succesfully installed ${normal}"
+	else
+		echo -e "\n ${red}music-finder doesn't install succesfully ${normal}"
+		exit 1
+	fi
 else
 	echo -e "\n ${red}music-finder doesn't install succesfully ${normal}"
 	exit 1

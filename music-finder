@@ -208,11 +208,13 @@ function update() {
 	if cd /tmp/ &> /dev/null; then
 		git clone https://github.com/hessamashari/music-finder.git /tmp/music-finder
 		sleep 2
+		echo -e "\n"
 		# Check access of /tmp/music-finder
 		if cd /tmp/music-finder/ &> /dev/null; then
 			# Replace older program with newer
 			sudo cp /tmp/music-finder/music-finder /usr/bin/music-finder
 			sudo chmod 755 /usr/bin/music-finder
+			echo -e "\n"
 			# Check operation
 			if [[ "$?" == "0" ]]; then
 				echo -e " ${green}Music_Finder updated succesfully! ${normal}"

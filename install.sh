@@ -50,7 +50,8 @@ elif zypper search i+ &> /dev/null; then # Check openSUSE
 		checkDistro="1"
 	fi
 else
-	echo -e "${red}Your distro is neither ArchBase or DebianBase or RedHatBase or SuseBase So, The script is not going to work in your distro and you have install it manually. for more information read README.md${normal}"
+	echo -e "${red}Your distro is neither ArchBase or DebianBase or RedHatBase or SuseBase So,
+	 The script is not going to work in your distro and you have install it manually. for more information read README.md${normal}"
 	checkDistro="1"
 fi
 

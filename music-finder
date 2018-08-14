@@ -106,21 +106,21 @@ function choose_dir() {
 
 		find_function "/"
 	elif [[ "$searchAllSystem" == "n" || "$searchAllSystem" == "N" ]]; then
-		read -p "Do you like search this directory? [Y/n] " likedirectory
+		read -p "Do you like search this directory? [Y/n] " workingDirectory
 
-		if [[ "$likedirectory" == "" || "$likedirectory" == "y" || "$likedirectory" == "Y" ]]; then
+		if [[ "$workingDirectory" == "" || "$workingDirectory" == "y" || "$workingDirectory" == "Y" ]]; then
 			# Search current directory
 		    echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${normal}"
 
 			find_function "$PWD"
-		elif [[ "$likedirectory" == "n" || "$likedirectory" == "N" ]]; then
+		elif [[ "$workingDirectory" == "n" || "$workingDirectory" == "N" ]]; then
 			# Search entered path
-			read -p "Enter a directory : " -i "" -e userEnteredDirectory
+			read -p "Enter a directory : " -i "" -e userEnteredPath
 			echo -e "${green}-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/${normal}"
-				if [[ "$userEnteredDirectory" == "/" ]]; then
+				if [[ "$userEnteredPath" == "/" ]]; then
 					echo -e "${red}You have to chose first option :)${normal}"
 				else
-					find_function "$userEnteredDirectory"
+					find_function "$userEnteredPath"
 				fi
 		else
 			echo -e "${red}Invalid argument!${normal}"

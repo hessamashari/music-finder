@@ -32,7 +32,7 @@ function play_in_dir() {
 				continue
 			else
 				echo -e "${red}Invalid argument!${normal}"
-				exit 1
+				continue
 			fi
 		# For directories witch has root owner
 		elif sudo su -c "cd '$dirName'" &> /dev/null; then
@@ -67,7 +67,7 @@ function find_function() {
 
 	elif [[ "$selectedType" == "F" || "$selectedType" == "f" ]]; then
 		echo -e "${orange}Install the mplayer if you want to play music after find it${normal}"
-		# Search and play music whit Mplayer
+		# Search and play music with Mplayer
 		if [[ "$inputDir" == "/" ]]; then
 			sudo find "$inputDir" -type f -iname "*$name*" -exec mplayer {} \;
 		else

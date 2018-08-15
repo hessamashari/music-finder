@@ -38,7 +38,8 @@ function play_in_dir() {
 		elif sudo su -c "cd '$dirName'" &> /dev/null; then
 			sudo mplayer $dirName/*
 		else
-			echo -e "${red}\nCannot cd to directory ${orange}'$dirName'${normal}"
+			echo -e "\n"
+			echo -e "${red}Cannot cd to directory ${orange}'$dirName'${normal}"
 			exit 1
 		fi
 	done
@@ -51,6 +52,7 @@ function find_function() {
 	read -p "Please enter the name of music wich you search : " name
 	read -p "Please Select your type d {directory} f {file} : " selectedType
 
+	echo -e "\n"
 	if [[ "$selectedType" == "D" || "$selectedType" == "d" ]]; then
 		# Search directory
 		if [[ "$inputDir" == "/" ]]; then
@@ -130,7 +132,8 @@ function choose_dir() {
 	    echo -e "${red}Invalid argument!${normal}"
 		exit 1
 	fi
-	echo -e "${green}\ndone!${normal}"
+	echo -e "\n"
+	echo -e "${green}done!${normal}"
 }
 
 # ----------\Uninstall function\----------
@@ -178,17 +181,21 @@ function uninstall() {
 		if [[ "$deleteDependencies" == "0" ]]; then
 			sudo rm -f /usr/bin/music-finder
 			if [[ "$?" == "0" ]]; then
-				echo -e "\n ${red}music-finder succesfully uninstalled :( ${normal}"
+				echo -e "\n"
+				echo -e "${red}music-finder succesfully uninstalled :( ${normal}"
 			else
-				echo -e "\n ${green}music-finder doesn't uninstall succesfully :) ${normal}"
+				echo -e "\n"
+				echo -e "${green}music-finder doesn't uninstall succesfully :) ${normal}"
 				exit 1
 			fi
 		else
-			echo -e "\n ${green}music-finder doesn't uninstall succesfully :) ${normal}"
+			echo -e "\n"
+			echo -e "${green}music-finder doesn't uninstall succesfully :) ${normal}"
 			exit 1
 		fi
 	elif [[ "$deletMusicFinder" == "" || "$deletMusicFinder" == "n" || "$deletMusicFinder" == "N" ]]; then
-		echo -e "\n ${green}music-finder is still installed :) ${normal}"
+		echo -e "\n"
+		echo -e "${green}music-finder is still installed :) ${normal}"
 		return
 	else
 		echo -e "${red}Invalid argument! ${normal}"
@@ -224,11 +231,13 @@ function update() {
 				exit 1
 			fi
 		else
-			echo -e "${red}\nCannot cd to directory ${orange}'/tmp/music-finder'${normal}"
+			echo -e "\n"
+			echo -e "${red}Cannot cd to directory ${orange}'/tmp/music-finder'${normal}"
 			exit 1
 		fi
 	else
-		echo -e "${red}\nCannot cd to directory ${orange}'/tmp'${normal}"
+		echo -e "\n"
+		echo -e "${red}Cannot cd to directory ${orange}'/tmp'${normal}"
 		exit 1
 	fi
 
@@ -238,7 +247,8 @@ function update() {
 
 # ----------\Help function\----------
 function usage() {
-	echo -e "\n Usage: music-finder [ -h | --help ],  [ --uninstall ],   [ -U | --update ]"
+	echo -e "\n"
+	echo -e " Usage: music-finder [ -h | --help ],  [ --uninstall ],   [ -U | --update ]"
 	return
 }
 

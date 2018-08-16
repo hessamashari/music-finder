@@ -20,7 +20,8 @@ white="$(printf '\033[0;37m')"        # white
 
 # ----------\Play musics in list of directories function\----------
 function play_in_dir() {
-	directories="$1"
+	local directories="$1"
+	
 	# Play music in serched directory
 	for dirName in $directories; do
 		if cd "$dirName" &> /dev/null; then

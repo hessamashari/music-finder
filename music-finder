@@ -249,10 +249,22 @@ function update() {
 	sudo rm -rf /tmp/music-finder
 }
 
+# ----------\Show version function\---------
+function show_version() {
+	echo -e "\n"
+	echo -e "Music_Finder, version v0.4 (x86_64-unknown-linux-gnu)
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+
+built with bash 4.4.23 (GNU/bash)
+"
+	return
+}
+
 # ----------\Help function\----------
 function usage() {
 	echo -e "\n"
-	echo -e " Usage: music-finder [ -h | --help ],  [ --uninstall ],   [ -U | --update ]"
+	echo -e " Usage: music-finder [ -h | --help ],  [ -V | --version ],  [ --uninstall ],   [ -U | --update ]"
 	return
 }
 
@@ -262,6 +274,7 @@ case "$1" in
     "--update" | "-U")    update    ;;
 	"--uninstall")    uninstall    ;;
 	"--help" | "-h")    usage    ;;
+	"--version" | "-V")    show_version    ;;
 	*)    usage    ;;
 esac;
 exit 0

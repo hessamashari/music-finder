@@ -19,7 +19,7 @@ white="$(printf '\033[0;37m')"        # white
 echo -e "\n"
 echo "+-------------------------------------------------------------------------------------+"
 echo "|          Music finder and music player powered by Mplayer and find command          |"
-echo "|          Author: Hessam Ashari                                                       |"
+echo "|          Author: Hessam Ashari                                                      |"
 echo "|          Git repository: https://github.com/hessamashari/music-finder               |"
 echo "|          Platform: GNU/Linux                                                        |"
 echo "|          Version: 1.2                                                               |"

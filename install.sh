@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Muic_Finder installer
+
+	# author : Hessam Ashari
+	# github : https://github.com/hessamashari/video-tool
+	# Email  : hessam.ashari@gmail.com
+
 clear
 
 normal="$(printf '\033[0m')"          # Text mode
@@ -13,7 +19,7 @@ white="$(printf '\033[0;37m')"        # white
 echo -e "\n"
 echo "+-------------------------------------------------------------------------------------+"
 echo "|          Music finder and music player powered by Mplayer and find command          |"
-echo "|          Author: HessamAshari                                                       |"
+echo "|          Author: Hessam Ashari                                                       |"
 echo "|          Git repository: https://github.com/hessamashari/music-finder               |"
 echo "|          Platform: GNU/Linux                                                        |"
 echo "|          Version: 1.2                                                               |"

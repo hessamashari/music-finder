@@ -9,6 +9,9 @@
 #  https://github.com/hessamashari/music-finder.git  #
 ######################################################
 
+	# author : Hessam Ashari
+	# github : https://github.com/hessamashari/video-tool
+	# Email  : hessam.ashari@gmail.com
 
 normal="$(printf '\033[0m')"          # text mode
 # Colors
@@ -174,7 +177,7 @@ function uninstall() {
 			fi
 		else
 			echo -e "${red}Your distro is neither ArchBase or DebianBase or RedHatBase or SuseBase So,
-			 The script is not going to work in your distro and you have uninstall the dependencies manually. for more information read README.md${normal}"
+			 The script is not going to work in your distro and you have uninstall the dependencies manually.${normal}"
 			deleteDependencies="1"
 		fi
 

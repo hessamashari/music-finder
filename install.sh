@@ -3,7 +3,8 @@
 # Muic_Finder installer
 
 	# author : Hessam Ashari
-	# github : https://github.com/hessamashari/video-tool
+	# gitlab : https://gitlab.com/hessam.ashari/music-finder
+	# github : https://github.com/hessamashari/music-finder
 	# Email  : hessam.ashari@gmail.com
 
 clear

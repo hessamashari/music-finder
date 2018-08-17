@@ -10,7 +10,8 @@
 ######################################################
 
 	# author : Hessam Ashari
-	# github : https://github.com/hessamashari/video-tool
+	# gitlab : https://gitlab.com/hessam.ashari/music-finder
+	# github : https://github.com/hessamashari/music-finder
 	# Email  : hessam.ashari@gmail.com
 
 normal="$(printf '\033[0m')"          # text mode

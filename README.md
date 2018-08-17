@@ -67,7 +67,7 @@ $ music-finder --uninstall
 ## Help
 
 ```sh
-$ music-player --help
+$ music-finder --help
 ```
 
 Exit the program with Ctrl+C :)

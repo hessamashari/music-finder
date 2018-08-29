@@ -3,6 +3,7 @@
 # Muic_Finder installer
 
 	# author : Hessam Ashari
+	# license: GPLv3
 	# gitlab : https://gitlab.com/hessam.ashari/music-finder
 	# github : https://github.com/hessamashari/music-finder
 	# Email  : hessam.ashari@gmail.com
@@ -23,6 +24,7 @@ echo "|          Music finder and music player powered by Mplayer and find comma
 echo "|          Author: Hessam Ashari                                                      |"
 echo "|          Git repository: https://github.com/hessamashari/music-finder               |"
 echo "|          Platform: GNU/Linux                                                        |"
+echo "|			 LICENSE: GNU GPLv3									    					|"
 echo "|          Version: 1.2                                                               |"
 echo "+-------------------------------------------------------------------------------------+"
 echo -e "\n"

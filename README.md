@@ -73,5 +73,5 @@ $ music-finder --help
 Exit the program with Ctrl+C :)
 
 
-Pleas dont forget star  
-Tnx!
+Please dont forget star...
+Thanks!
